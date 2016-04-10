@@ -2,11 +2,11 @@
 
 use App\Core\Factories\BuildModels;
 use App\Core\Factories\ModelFactory;
-use App\Users\User;
+use App\Helpers\CreatesModels;
 
 class TestCase extends Illuminate\Foundation\Testing\TestCase
 {
-    use BuildModels;
+    use BuildModels, CreatesModels;
 
     /**
      * The base URL to use while testing the application.
@@ -35,18 +35,6 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         parent::setUp();
         $this->artisan('migrate:reset');
         $this->artisan('migrate');
-    }
-
-    /**
-     * @param array $attributes
-     * @return \App\Users\User
-     */
-    public function createUser(array $attributes = [])
-    {
-        return $this->modelFactory->create(User::class, array_merge([
-            'name' => 'Doe',
-            'email' => 'john.doe@email.com',
-        ], $attributes));
     }
 
     public function assertNoContent()

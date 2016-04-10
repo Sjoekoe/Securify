@@ -1,11 +1,14 @@
 <?php
 namespace functional\Api;
 
+use App\Helpers\DefaultIncludes;
 use App\Users\User;
 use Carbon\Carbon;
 
 class UsersTest extends \TestCase
 {
+    use DefaultIncludes;
+
     /** @test */
     function it_can_get_all_users_paginated()
     {
@@ -14,13 +17,7 @@ class UsersTest extends \TestCase
         $this->get('/api/users')
             ->seeJsonEquals([
                 'data' =>[
-                    [
-                        'id' => $user->id(),
-                        'name' => $user->name(),
-                        'email' => $user->email(),
-                        'created_at' => $user->createdAt()->toIso8601String(),
-                        'updated_at' => $user->updatedAt()->toIso8601String(),
-                    ]
+                    $this->includedUser($user)
                 ],
                 'meta' => [
                     'pagination' => [
@@ -61,13 +58,7 @@ class UsersTest extends \TestCase
 
         $this->get('/api/users/' . $user->id())
             ->seeJsonEquals([
-                'data' => [
-                    'id' => $user->id(),
-                    'name' => $user->name(),
-                    'email' => $user->email(),
-                    'created_at' => $user->createdAt()->toIso8601String(),
-                    'updated_at' => $user->updatedAt()->toIso8601String(),
-                ],
+                'data' => $this->includedUser($user),
             ]);
     }
 
@@ -80,13 +71,10 @@ class UsersTest extends \TestCase
             'name' => 'Foo person',
             'email' => 'foo@bar.com',
         ])->seeJsonEquals([
-            'data' => [
-                'id' => $user->id(),
+            'data' => $this->includedUser($user, [
                 'name' => 'Foo person',
                 'email' => 'foo@bar.com',
-                'created_at' => $user->createdAt()->toIso8601String(),
-                'updated_at' => $user->updatedAt()->toIso8601String(),
-            ],
+            ])
         ]);
     }
 

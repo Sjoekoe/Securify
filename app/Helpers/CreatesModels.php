@@ -1,6 +1,8 @@
 <?php
 namespace App\Helpers;
 
+use App\Users\User;
+
 trait CreatesModels
 {
     /**
