@@ -159,6 +159,7 @@ return [
         /**
          * Own Service Providers
          */
+        App\Accounts\AccountServiceProvider::class,
         App\Core\Factories\ModelFactoryServiceProvider::class,
         App\Users\UserServiceProvider::class,
 

@@ -10,5 +10,10 @@ $api->version('v1', function(Router $api) {
         $api->get('/users/{user}', ['as' => 'users.show', 'uses' => 'UserController@show']);
         $api->put('/users/{user}', ['as' => 'users.update', 'uses' => 'UserController@update']);
         $api->delete('/users/{user}', ['as' => 'users.delete', 'uses' => 'UserController@delete']);
+
+        $api->group(['namespace' => 'Accounts\\', 'prefix' => 'accounts'], function (Router $api) {
+            $api->get('/', ['as' => 'accounts.index', 'uses' => 'AccountController@index']);
+            $api->post('/', ['as' => 'accounts.store', 'uses' => 'AccountController@store']);
+        });
     });
 });

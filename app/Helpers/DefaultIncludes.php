@@ -1,6 +1,7 @@
 <?php
 namespace App\Helpers;
 
+use App\Accounts\Account;
 use App\Users\User;
 
 trait DefaultIncludes
@@ -18,6 +19,23 @@ trait DefaultIncludes
             'email' => $user->email(),
             'created_at' => $user->createdAt()->toIso8601String(),
             'updated_at' => $user->updatedAt()->toIso8601String(), 
+        ], $attributes);
+    }
+
+    /**
+     * @param \App\Accounts\Account $account
+     * @param array $attributes
+     * @return array
+     */
+    public function includedAccount(Account $account, $attributes = [])
+    {
+        return array_merge([
+            'id' => $account->id(),
+            'name' => $account->name(),
+            'website' => $account->website(),
+            'vat' => $account->vat(),
+            'created_at' => $account->createdAt()->toIso8601String(),
+            'updated_at' => $account->updatedAt()->toIso8601String(),
         ], $attributes);
     }
 }
