@@ -28,4 +28,17 @@ interface UserRepository
      * @return \App\Users\User
      */
     public function find($id);
+
+    /**
+     * @param string $id
+     * @param string $token
+     * @return \App\Users\User
+     */
+    public function findByIdAndToken($id, $token);
+
+    /**
+     * @param string $email
+     * @return \App\Users\User
+     */
+    public function findByEmail($email);
 }

@@ -31,6 +31,10 @@ class UserController extends Controller
     {
         $user = $this->users->create($request->all());
 
+        if (auth()->attempt(['email' => $request->get('email'), 'password' => $request->get('password')], false)) {
+            dd('authenticated');
+        };
+
         return $this->response()->item($user, new UserTransformer());
     }
 

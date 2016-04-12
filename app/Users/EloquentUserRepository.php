@@ -1,6 +1,8 @@
 <?php
 namespace App\Users;
 
+use Hash;
+
 class EloquentUserRepository implements UserRepository
 {
     /**
@@ -22,6 +24,7 @@ class EloquentUserRepository implements UserRepository
         $user = new EloquentUser();
         $user->name = $values['name'];
         $user->email = $values['email'];
+        $user->password = Hash::make($values['password']);
 
         $user->save();
 
@@ -68,5 +71,26 @@ class EloquentUserRepository implements UserRepository
     public function find($id)
     {
         return $this->user->where('id', $id)->first();
+    }
+
+    /**
+     * @param string $id
+     * @param string $token
+     * @return \App\Users\User
+     */
+    public function findByIdAndToken($id, $token)
+    {
+        return $this->user->where('id', $id)
+            ->where('remember_token', $token)
+            ->first();
+    }
+
+    /**
+     * @param string $email
+     * @return \App\Users\User
+     */
+    public function findByEmail($email)
+    {
+        return $this->user->where('email', $email)->first();
     }
 }
