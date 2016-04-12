@@ -161,8 +161,8 @@ return [
          */
         App\Accounts\AccountServiceProvider::class,
         App\Core\Factories\ModelFactoryServiceProvider::class,
+        App\JWT\JWTServiceProvider::class,
         App\Users\UserServiceProvider::class,
-
 
         /*
          * Third party providers
