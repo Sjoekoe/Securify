@@ -14,6 +14,9 @@ $api->version('v1', function(Router $api) {
         $api->group(['namespace' => 'Accounts\\', 'prefix' => 'accounts'], function (Router $api) {
             $api->get('/', ['as' => 'accounts.index', 'uses' => 'AccountController@index']);
             $api->post('/', ['as' => 'accounts.store', 'uses' => 'AccountController@store']);
+            $api->get('/{account}', ['as' => 'accounts.show', 'uses' => 'AccountController@show']);
+            $api->put('/{account}', ['as' => 'accounts.update', 'uses' => 'AccountController@update']);
+            $api->delete('/{account}', ['as' => 'accounts.delete', 'uses' => 'AccountController@delete']);
         });
     });
 });

@@ -21,8 +21,38 @@ class EloquentAccountRepository implements AccountRepository
     {
         $account = new EloquentAccount($values);
         $account->save();
-        
+
         return $account;
+    }
+
+    /**
+     * @param \App\Accounts\Account $account
+     * @param array $values
+     * @return \App\Accounts\Account
+     */
+    public function update(Account $account, array $values)
+    {
+        $account->update($values);
+        $account->save();
+
+        return $account;
+    }
+
+    /**
+     * @param \App\Accounts\Account $account
+     */
+    public function delete(Account $account)
+    {
+        $account->delete();
+    }
+
+    /**
+     * @param int $id
+     * @return \App\Accounts\Account
+     */
+    public function find($id)
+    {
+        return $this->account->where('id', $id)->first();
     }
 
     /**
