@@ -1,0 +1,7 @@
+suites:
+  beatswitch_suite:
+    namespace: App
+    psr4_prefix: App
+    spec_path: tests
+    src_path: app
+formatter.name: dot
