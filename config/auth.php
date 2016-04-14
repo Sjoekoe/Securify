@@ -38,8 +38,13 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        /*'web' => [
             'driver' => 'session',
+            'provider' => 'users',
+        ],*/
+
+        'web' => [
+            'driver' => 'securify',
             'provider' => 'users',
         ],
 
@@ -67,10 +72,14 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        /*'users' => [
             'driver' => 'eloquent',
             'model' => EloquentUser::class,
-        ],
+        ],*/
+
+        'users' => [
+            'driver' => 'securify',
+        ]
 
          /*'users' => [
              'driver' => 'database',

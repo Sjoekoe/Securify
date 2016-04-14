@@ -1,6 +1,7 @@
 <?php
 namespace App\Core\Info;
 
+use App\Api\Accounts\AccountTransformer;
 use App\JWT\TokenGenerator;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Contracts\Config\Repository as Config;
@@ -88,6 +89,13 @@ class Info implements Jsonable
                     'id' => $this->auth->user()->id(),
                 ],
             ];
+
+            if ($this->auth->checkTeam()) {
+                $info['auth']['team'] = [
+                    'id' => $this->auth->team()->id(),
+                ];
+                $info['auth']['account'] = (new AccountTransformer())->transform($this->auth->account());
+            }
         }
 
         return $info;

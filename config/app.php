@@ -160,6 +160,7 @@ return [
          * Own Service Providers
          */
         App\Accounts\AccountServiceProvider::class,
+        App\Auth\AuthServiceProvider::class,
         App\Core\Factories\ModelFactoryServiceProvider::class,
         App\JWT\JWTServiceProvider::class,
         App\Users\AuthServiceProvider::class,

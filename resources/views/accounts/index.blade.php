@@ -11,7 +11,7 @@
             <template id="select-account">
                 <div class="list-group">
                     <template v-for="team in teams">
-                        <a href="#" class="list-group-item">@{{ team.accountRelation.data.name }}</a>
+                        <a href="/accounts/@{{ team.accountRelation.data.id }}/login" class="list-group-item">@{{ team.accountRelation.data.name }}</a>
                     </template>
                     <a href="#" class="list-group-item">Create new account ...</a>
                 </div>
