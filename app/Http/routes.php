@@ -15,3 +15,7 @@ Route::group(['namespace' => 'Pages'], function() {
     require __DIR__ . '/Routes/pages.php';
 });
 
+Route::group(['namespace' => 'Users'], function() {
+    require __DIR__ . '/Routes/settings.php';
+});
+

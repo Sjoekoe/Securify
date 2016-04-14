@@ -2,9 +2,9 @@
     <div class="container-fluid">
         <div class="navbar">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">
+                <div class="navbar-brand">
                     <i class="im-windows8 text-logo-element animated bounceIn"></i><span class="text-logo">spr</span><span class="text-slogan">flat</span>
-                </a>
+                </div>
             </div>
             <nav class="top-nav" role="navigation">
                 <ul class="nav navbar-nav pull-left">
@@ -63,7 +63,7 @@
                             </li>
                             <li class="mail-list clearfix">
                                 <a href="#">
-                                    <img src="assets/img/avatars/128.jpg" class="mail-avatar pull-left" alt="avatar">
+                                    <img src="" class="mail-avatar pull-left" alt="avatar">
                                     <p class="name">
                                         <span class="status"><i class="en-dot"></i></span> Jason Rivera
                                         <span class="notification">2</span>
@@ -76,7 +76,7 @@
                             </li>
                             <li class="mail-list clearfix">
                                 <a href="#">
-                                    <img src="assets/img/avatars/129.jpg" class="mail-avatar pull-left" alt="avatar">
+                                    <img src="" class="mail-avatar pull-left" alt="avatar">
                                     <p class="name">
                                         <span class="status off"><i class="en-dot"></i></span> Steeve Mclark
                                         <span class="notification">6</span>
@@ -89,7 +89,7 @@
                             </li>
                             <li class="mail-list clearfix">
                                 <a href="#">
-                                    <img src="assets/img/avatars/130.jpg" class="mail-avatar pull-left" alt="avatar">
+                                    <img src="" class="mail-avatar pull-left" alt="avatar">
                                     <p class="name">
                                         <span class="status off"><i class="en-dot"></i></span> Fellix Jones
                                         <span class="notification">1</span>
@@ -102,7 +102,7 @@
                             </li>
                             <li class="mail-list clearfix">
                                 <a href="#">
-                                    <img src="assets/img/avatars/131.jpg" class="mail-avatar pull-left" alt="avatar">
+                                    <img src="" class="mail-avatar pull-left" alt="avatar">
                                     <p class="name">
                                         <span class="status"><i class="en-dot"></i></span> Tina Dowsen
                                         <span class="notification">5</span>
@@ -157,13 +157,10 @@
                     </li>
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown">
-                            <img class="user-avatar" src="assets/img/avatars/48.jpg" alt="SuggeElson">{{ auth()->user()->name() }}</a>
+                            <img class="user-avatar" src="" alt="{{ auth()->user()->name() }}">{{ auth()->user()->name() }}</a>
                         <ul class="dropdown-menu right" role="menu">
                             <li>
-                                <a href="profile.html"><i class="st-user"></i> Profile</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="st-settings"></i> Settings</a>
+                                <a href="{{ route('user.settings') }}"><i class="st-settings"></i> Settings</a>
                             </li>
                             <li>
                                 <a href="{{ route('logout') }}"><i class="im-exit"></i> Logout</a>
