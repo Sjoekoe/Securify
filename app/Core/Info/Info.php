@@ -85,7 +85,7 @@ class Info implements Jsonable
             $info['auth'] = [
                 'jwt' => $this->jwt->byUser($this->auth->user()),
                 'user' => [
-                    'id' => $this->auth->user()->getId(),
+                    'id' => $this->auth->user()->id(),
                 ],
             ];
         }

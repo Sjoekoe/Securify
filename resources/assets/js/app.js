@@ -5,6 +5,6 @@ new Vue({
     el: 'body',
     
     components: {
-        login: require('./components/auth/Register'),
+        selectaccount: require('./components/accounts/SelectAccount'),
     }
 });

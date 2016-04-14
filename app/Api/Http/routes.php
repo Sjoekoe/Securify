@@ -11,6 +11,12 @@ $api->version('v1', function(Router $api) {
         $api->put('/users/{user}', ['as' => 'users.update', 'uses' => 'UserController@update']);
         $api->delete('/users/{user}', ['as' => 'users.delete', 'uses' => 'UserController@delete']);
 
+        $api->group(['namespace' => 'Teams\\', 'prefix' => 'users/{user}/teams'], function (Router $api) {
+            $api->get('/', ['as' => 'users.teams.index', 'uses' => 'TeamController@index']);
+            $api->get('/{team}', ['as' => 'users.teams.show', 'uses' => 'TeamController@show']);
+            $api->delete('/{team}', ['as' => 'users.teams.delete', 'uses' => 'TeamController@delete']);
+        });
+
         $api->group(['namespace' => 'Accounts\\', 'prefix' => 'accounts'], function (Router $api) {
             $api->get('/', ['as' => 'accounts.index', 'uses' => 'AccountController@index']);
             $api->post('/', ['as' => 'accounts.store', 'uses' => 'AccountController@store']);

@@ -2,6 +2,7 @@
 namespace App\Helpers;
 
 use App\Accounts\Account;
+use App\Teams\Team;
 use App\Users\User;
 
 trait CreatesModels
@@ -28,6 +29,18 @@ trait CreatesModels
             'name' => 'Foo Company',
             'website' => 'www.test.com',
             'vat' => '123456',
+        ], $attributes));
+    }
+
+    /**
+     * @param array $attributes
+     * @return \App\Teams\Team
+     */
+    public function createTeam(array $attributes = [])
+    {
+        return $this->modelFactory->create(Team::class, array_merge([
+            'user_id' => $this->createUser(['email' => 'second@user.com'])->id(),
+            'account_id' => $this->createAccount()->id(),
         ], $attributes));
     }
 }

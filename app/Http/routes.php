@@ -1,4 +1,7 @@
 <?php
+Route::group(['namespace' => 'Accounts'], function() {
+    require __DIR__ . '/Routes/accounts.php';
+});
 
 Route::group(['namespace' => 'Api'], function () {
     require __DIR__ . '/../Api/Http/routes.php';

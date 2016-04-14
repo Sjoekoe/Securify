@@ -3,6 +3,7 @@
 use App\Core\Factories\BuildModels;
 use App\Core\Factories\ModelFactory;
 use App\Helpers\CreatesModels;
+use Illuminate\Http\Response;
 
 class TestCase extends Illuminate\Foundation\Testing\TestCase
 {
@@ -39,6 +40,6 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
     public function assertNoContent()
     {
-        return $this->assertResponseStatus(204);
+        return $this->assertResponseStatus(Response::HTTP_NO_CONTENT);
     }
 }

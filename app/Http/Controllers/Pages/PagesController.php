@@ -9,9 +9,4 @@ class PagesController extends Controller
     {
         return view('pages.home');
     }
-
-    public function test()
-    {
-        dd(auth()->user()->id());
-    }
 }

@@ -2,6 +2,7 @@
 namespace App\Providers;
 
 use App\Accounts\AccountRouteBinding;
+use App\Teams\TeamRouteBinding;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use App\Users\UserRouteBinding;
@@ -28,6 +29,7 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot($router);
 
         $router->bind('account', AccountRouteBinding::class);
+        $router->bind('team', TeamRouteBinding::class);
         $router->bind('user', UserRouteBinding::class);
     }
 

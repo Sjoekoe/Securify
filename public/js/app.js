@@ -10026,64 +10026,30 @@ new Vue({
     el: 'body',
 
     components: {
-        login: require('./components/auth/Register')
+        selectaccount: require('./components/accounts/SelectAccount')
     }
 });
 
-},{"./components/auth/Register":4,"vue":2}],4:[function(require,module,exports){
+},{"./components/accounts/SelectAccount":4,"vue":2}],4:[function(require,module,exports){
 'use strict';
 
 var Vue = require('vue');
 
 module.exports = Vue.extend({
-    template: '#login',
+    template: '#select-account',
 
-    props: ['login'],
+    props: ['selectaccount'],
 
     data: function data() {
         return {
-            name: '',
-            email: '',
-            password: '',
-            password_confirmation: '',
-            remember: false,
-            errors: [],
-            submitting: false,
-            status: ''
+            teams: []
         };
     },
 
-    ready: function ready() {},
-
-    methods: {
-        register: function register(e) {
-            e.preventDefault();
-            this.submitting = true;
-            this.status = 'Registering...';
-
-            var data = {
-                name: this.name,
-                email: this.email,
-                password: this.password,
-                password_confirmation: this.password_confirmation
-            };
-
-            var vm = this;
-
-            $.ajax({
-                url: '/api/users',
-                type: 'post',
-                data: data,
-                success: function () {
-                    vm.status = 'Redirecting...';
-                    window.location.replace('/test');
-                }.bind(vm),
-                error: function (errors) {
-                    vm.errors = errors.responseJSON.errors;
-                    vm.submitting = false;
-                }.bind(vm)
-            });
-        }
+    ready: function ready() {
+        $.getJSON('/api/users/' + window.securify.auth.user.id + '/teams', function (teams) {
+            this.teams = teams.data;
+        }.bind(this));
     }
 });
 

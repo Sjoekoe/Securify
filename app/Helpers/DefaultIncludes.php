@@ -2,6 +2,7 @@
 namespace App\Helpers;
 
 use App\Accounts\Account;
+use App\Teams\Team;
 use App\Users\User;
 
 trait DefaultIncludes
@@ -18,7 +19,7 @@ trait DefaultIncludes
             'name' => $user->name(),
             'email' => $user->email(),
             'created_at' => $user->createdAt()->toIso8601String(),
-            'updated_at' => $user->updatedAt()->toIso8601String(), 
+            'updated_at' => $user->updatedAt()->toIso8601String(),
         ], $attributes);
     }
 
@@ -36,6 +37,24 @@ trait DefaultIncludes
             'vat' => $account->vat(),
             'created_at' => $account->createdAt()->toIso8601String(),
             'updated_at' => $account->updatedAt()->toIso8601String(),
+        ], $attributes);
+    }
+
+    /**
+     * @param \App\Teams\Team $team
+     * @param array $attributes
+     * @return array
+     */
+    public function includedTeam(Team $team, $attributes = [])
+    {
+        return array_merge([
+            'id' => $team->id(),
+            'userRelation' => [
+                'data' => $this->includedUser($team->user()),
+            ],
+            'accountRelation' => [
+                'data' => $this->includedAccount($team->account()),
+            ],
         ], $attributes);
     }
 }
