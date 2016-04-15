@@ -2,6 +2,7 @@
 namespace App\Helpers;
 
 use App\Accounts\Account;
+use App\Employees\Employee;
 use App\Teams\Team;
 use App\Users\User;
 
@@ -41,6 +42,20 @@ trait CreatesModels
         return $this->modelFactory->create(Team::class, array_merge([
             'user_id' => $this->createUser(['email' => 'second@user.com'])->id(),
             'account_id' => $this->createAccount()->id(),
+        ], $attributes));
+    }
+
+    /**
+     * @param array $attributes
+     * @return \App\Employees\Employee
+     */
+    public function createEmployee(array $attributes = [])
+    {
+        return $this->modelFactory->create(Employee::class, array_merge([
+            'name' => 'Employees name',
+            'number' => '4567',
+            'telephone' => '12345',
+            'email' => 'employee@mail.com',
         ], $attributes));
     }
 }

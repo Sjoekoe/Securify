@@ -16,7 +16,7 @@
                     </button>
                 </form>
             </li>
-            <li><a href="index.html">Dashboard <i class="im-screen"></i></a>
+            <li><a href="{{ route('dashboard') }}">Dashboard <i class="im-screen"></i></a>
             </li>
             <li><a href="charts.html">Charts <i class="st-chart"></i></a>
             </li>

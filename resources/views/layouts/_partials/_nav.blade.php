@@ -3,7 +3,13 @@
         <div class="navbar">
             <div class="navbar-header">
                 <div class="navbar-brand">
-                    <i class="im-windows8 text-logo-element animated bounceIn"></i><span class="text-logo">spr</span><span class="text-slogan">flat</span>
+                    @if (auth()->checkTeam())
+                        <span class="text-slogan">
+                            {{ auth()->account()->name() }}
+                        </span>
+                    @else
+                        <span class="text-logo">spr</span><span class="text-slogan">flat</span>
+                    @endif
                 </div>
             </div>
             <nav class="top-nav" role="navigation">

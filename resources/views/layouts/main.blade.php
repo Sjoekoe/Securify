@@ -29,6 +29,9 @@
 </head>
 <body>
     @include('layouts._partials._nav')
+    @if(auth()->checkTeam())
+        @include('layouts._partials._sidebar')
+    @endif
 
     <div id="content">
         <div class="content-wrapper">

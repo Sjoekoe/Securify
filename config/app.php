@@ -162,6 +162,7 @@ return [
         App\Accounts\AccountServiceProvider::class,
         App\Auth\AuthServiceProvider::class,
         App\Core\Factories\ModelFactoryServiceProvider::class,
+        App\Employees\EmployeeServiceProvider::class,
         App\JWT\JWTServiceProvider::class,
         App\Users\AuthServiceProvider::class,
         App\Users\UserServiceProvider::class,
