@@ -10027,11 +10027,14 @@ new Vue({
 
     components: {
         selectaccount: require('./components/accounts/SelectAccount'),
-        usersettings: require('./components/users/Settings')
+        usersettings: require('./components/users/Settings'),
+        employeestable: require('./components/employees/EmployeesTable'),
+        createemployee: require('./components/employees/CreateEmployee'),
+        editemployee: require('./components/employees/EditEmployee')
     }
 });
 
-},{"./components/accounts/SelectAccount":4,"./components/users/Settings":5,"vue":2}],4:[function(require,module,exports){
+},{"./components/accounts/SelectAccount":4,"./components/employees/CreateEmployee":5,"./components/employees/EditEmployee":6,"./components/employees/EmployeesTable":7,"./components/users/Settings":8,"vue":2}],4:[function(require,module,exports){
 'use strict';
 
 var Vue = require('vue');
@@ -10055,6 +10058,180 @@ module.exports = Vue.extend({
 });
 
 },{"vue":2}],5:[function(require,module,exports){
+'use strict';
+
+var Vue = require('vue');
+
+module.exports = Vue.extend({
+    template: '#create-employee',
+
+    props: ['createemployee'],
+
+    data: function data() {
+        return {
+            name: '',
+            email: '',
+            number: '',
+            telephone: '',
+            errors: [],
+            submitting: false,
+            status: 'Creating Employee ...',
+            error: false,
+            errorMessage: ''
+        };
+    },
+
+    ready: function ready() {},
+
+    methods: {
+        createEmployee: function createEmployee() {
+            this.submitting = true;
+            var data = {
+                name: this.name,
+                email: this.email,
+                telephone: this.telephone,
+                number: this.number
+            };
+
+            $.ajax({
+                url: '/api/accounts/' + window.securify.auth.account.id + '/employees',
+                type: 'post',
+                data: data,
+                error: function (errors) {
+                    if (errors.responseJSON.status_code !== 422) {
+                        this.error = true;
+                        if (errors.responseJSON.status_code == 403) {
+                            this.errorMessage = 'You have no rights to perform this action.';
+                        } else {
+                            this.errorMessage = 'Something went wrong. Please contact support.';
+                        }
+                    } else {
+                        this.errors = errors.responseJSON.errors;
+                    }
+
+                    this.submitting = false;
+                }.bind(this),
+                success: function success(employee) {
+                    this.status = 'Redirecting ...';
+
+                    window.location.replace('/employees');
+                }
+            });
+        }
+    }
+});
+
+},{"vue":2}],6:[function(require,module,exports){
+'use strict';
+
+var Vue = require('vue');
+
+module.exports = Vue.extend({
+    template: '#edit-employee',
+
+    props: ['editemployee'],
+
+    data: function data() {
+        return {
+            id: '',
+            name: '',
+            email: '',
+            number: '',
+            telephone: '',
+            errors: [],
+            submitting: false,
+            status: 'Updating Employee ...',
+            error: false,
+            errorMessage: ''
+        };
+    },
+
+    ready: function ready() {
+        $.getJSON('/api/accounts/' + window.securify.auth.account.id + '/employees/' + window.securify.employee, function (employee) {
+            this.name = employee.data.name;
+            this.email = employee.data.email;
+            this.number = employee.data.number;
+            this.telephone = employee.data.telephone;
+            this.id = employee.data.id;
+        }.bind(this));
+    },
+
+    methods: {
+        editEmployee: function editEmployee(employee) {
+            this.submitting = true;
+            var data = {
+                name: this.name,
+                email: this.email,
+                telephone: this.telephone,
+                number: this.number
+            };
+
+            $.ajax({
+                url: '/api/accounts/' + window.securify.auth.account.id + '/employees/' + employee,
+                type: 'put',
+                data: data,
+                error: function (errors) {
+                    if (errors.responseJSON.status_code !== 422) {
+                        this.error = true;
+                        if (errors.responseJSON.status_code == 403) {
+                            this.errorMessage = 'You have no rights to perform this action.';
+                        } else {
+                            this.errorMessage = 'Something went wrong. Please contact support.';
+                        }
+                    } else {
+                        this.errors = errors.responseJSON.errors;
+                    }
+
+                    this.submitting = false;
+                }.bind(this),
+                success: function success(employee) {
+                    this.status = 'Redirecting ...';
+
+                    window.location.replace('/employees');
+                }
+            });
+        }
+    }
+});
+
+},{"vue":2}],7:[function(require,module,exports){
+'use strict';
+
+var Vue = require('vue');
+
+module.exports = Vue.extend({
+    template: '#employees-table',
+
+    props: ['employeestable'],
+
+    data: function data() {
+        return {
+            fetching: true,
+            employees: []
+        };
+    },
+
+    ready: function ready() {
+        $.getJSON('/api/accounts/' + securify.auth.account.id + '/employees', function (employees) {
+            this.employees = employees.data;
+        }.bind(this));
+
+        this.fetching = false;
+    },
+
+    methods: {
+        removeEmployee: function removeEmployee(employee) {
+            this.employees.$remove(employee);
+            $.ajax({
+                url: '/api/accounts/' + securify.auth.account.id + '/employees/' + employee.id,
+                type: 'post',
+                data: { _method: 'delete' }
+            });
+        }
+    }
+});
+
+},{"vue":2}],8:[function(require,module,exports){
 'use strict';
 
 var Vue = require('vue');

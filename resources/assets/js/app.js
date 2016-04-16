@@ -7,5 +7,8 @@ new Vue({
     components: {
         selectaccount: require('./components/accounts/SelectAccount'),
         usersettings: require('./components/users/Settings'),
+        employeestable: require('./components/employees/EmployeesTable'),
+        createemployee: require('./components/employees/CreateEmployee'),
+        editemployee: require('./components/employees/EditEmployee'),
     }
 });

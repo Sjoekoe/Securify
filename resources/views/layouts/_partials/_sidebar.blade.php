@@ -1,22 +1,15 @@
 <div id="sidebar">
-    <!-- Start .sidebar-inner -->
     <div class="sidebar-inner">
-        <!-- Start .sidebar-panel -->
-        <div class="sidebar-panel panel-nav-header dark-bg">
-            <h4 class="sidebar-panel-title">Navigation</h4>
-            <a href="#" id="expand-all-submenus" class="expand-submenus tip" title="Expand all sub menus"><i class="en-plus"></i> </a>
-        </div>
-        <!-- End .sidebar-panel -->
-        <!-- Start #sideNav -->
         <ul id="sideNav" class="nav nav-pills nav-stacked">
-            <li class="top-search">
-                <form>
-                    <input type="text" name="search" placeholder="Search ...">
-                    <button type="submit"><i class="ec-search s20"></i>
-                    </button>
-                </form>
+            <li>
+                <a href="{{ route('dashboard') }}">
+                    Dashboard <i class="im-screen"></i>
+                </a>
             </li>
-            <li><a href="{{ route('dashboard') }}">Dashboard <i class="im-screen"></i></a>
+            <li>
+                <a href="{{ route('employees') }}">
+                    Employees <i class="im-mug"></i>
+                </a>
             </li>
             <li><a href="charts.html">Charts <i class="st-chart"></i></a>
             </li>
@@ -136,38 +129,5 @@
                 </ul>
             </li>
         </ul>
-        <!-- End #sideNav -->
-        <!-- Start .sidebar-panel -->
-        <div class="sidebar-panel mt0">
-            <h4 class="sidebar-panel-title dark-bg"><i class="im-fire"></i> Server usage</h4>
-            <div class="sidebar-panel-content">
-                <ul class="server-stats">
-                    <li>
-                        <span class="txt">Disk space</span>
-                        <span class="percent">78</span>
-                        <div id="usage-sparkline" class="sparkline">Loading...</div>
-                        <div class="pie-chart" data-percent="78"></div>
-                    </li>
-                </ul>
-                <ul class="server-stats">
-                    <li>
-                        <span class="txt">CPU</span>
-                        <span class="percent">56</span>
-                        <div id="cpu-sparkline" class="sparkline">Loading...</div>
-                        <div class="pie-chart" data-percent="56"></div>
-                    </li>
-                </ul>
-                <ul class="server-stats">
-                    <li>
-                        <span class="txt">Memory</span>
-                        <span class="percent">14</span>
-                        <div id="ram-sparkline" class="sparkline">Loading...</div>
-                        <div class="pie-chart" data-percent="14"></div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <!-- End .sidebar-panel -->
     </div>
-    <!-- End .sidebar-inner -->
 </div>
