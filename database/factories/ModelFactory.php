@@ -1,6 +1,7 @@
 <?php
 
 use App\Accounts\EloquentAccount;
+use App\Companies\EloquentCompany;
 use App\Employees\EloquentEmployee;
 use App\Teams\EloquentTeam;
 use App\Users\EloquentUser;
@@ -20,5 +21,8 @@ $factory->define(EloquentEmployee::class, function (Generator $faker) {
     return [];
 });
 $factory->define(EloquentVisitor::class, function (Generator $faker) {
+    return [];
+});
+$factory->define(EloquentCompany::class, function (Generator $faker) {
     return [];
 });

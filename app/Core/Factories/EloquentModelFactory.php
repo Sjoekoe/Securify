@@ -3,6 +3,8 @@ namespace App\Core\Factories;
 
 use App\Accounts\Account;
 use App\Accounts\EloquentAccount;
+use App\Companies\Company;
+use App\Companies\EloquentCompany;
 use App\Employees\EloquentEmployee;
 use App\Employees\Employee;
 use App\Teams\EloquentTeam;
@@ -25,6 +27,7 @@ class EloquentModelFactory
      */
     private $models = [
         Account::class => EloquentAccount::class,
+        Company::class => EloquentCompany::class,
         Employee::class => EloquentEmployee::class,
         Team::class => EloquentTeam::class,
         User::class => EloquentUser::class,

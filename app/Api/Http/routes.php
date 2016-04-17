@@ -36,8 +36,16 @@ $api->version('v1', function(Router $api) {
                 $api->get('/', ['as' => 'accounts.visitors.index', 'uses' => 'VisitorController@index']);
                 $api->post('/', ['as' => 'accounts.visitors.store', 'uses' => 'VisitorController@store']);
                 $api->get('/{visitor}', ['as' => 'accounts.visitors.show', 'uses' => 'VisitorController@show']);
-                $api->put('/{visitor}', ['as' => 'acccounts.visitors.update', 'uses' => 'VisitorController@update']);
+                $api->put('/{visitor}', ['as' => 'accounts.visitors.update', 'uses' => 'VisitorController@update']);
                 $api->delete('/{visitor}', ['as' => 'accounts.visitors.delete', 'uses' => 'VisitorController@delete']);
+            });
+
+            $api->group(['namespace' => 'Companies\\', 'prefix' => '{account}/companies'], function (Router $api) {
+                $api->get('/', ['as' => 'accounts.companies.index', 'uses' => 'CompanyController@index']);
+                $api->post('/', ['as' => 'accounts.companies.store', 'uses' => 'CompanyController@store']);
+                $api->get('/{company}', ['as' => 'accounts.companies.show', 'uses' => 'CompanyController@show']);
+                $api->put('/{company}', ['as' => 'accounts.companies.update', 'uses' => 'CompanyController@update']);
+                $api->delete('/{company}', ['as' => 'accounts.companies.delete', 'uses' => 'CompanyController@delete']);
             });
         });
     });

@@ -2,6 +2,7 @@
 namespace App\Providers;
 
 use App\Accounts\AccountRouteBinding;
+use App\Companies\CompanyRouteBinding;
 use App\Employees\EmployeeRouteBinding;
 use App\Teams\TeamRouteBinding;
 use App\Visitors\VisitorRouteBinding;
@@ -31,6 +32,7 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot($router);
 
         $router->bind('account', AccountRouteBinding::class);
+        $router->bind('company', CompanyRouteBinding::class);
         $router->bind('employee', EmployeeRouteBinding::class);
         $router->bind('team', TeamRouteBinding::class);
         $router->bind('user', UserRouteBinding::class);

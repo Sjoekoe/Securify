@@ -2,6 +2,7 @@
 namespace App\Helpers;
 
 use App\Accounts\Account;
+use App\Companies\Company;
 use App\Employees\Employee;
 use App\Teams\Team;
 use App\Users\User;
@@ -95,6 +96,26 @@ trait DefaultIncludes
             'employeeRelation' => [
                 'data' => $this->includedEmployee($visitor->employee()),
             ],
+        ], $attributes);
+    }
+
+    /**
+     * @param \App\Companies\Company $company
+     * @param array $attributes
+     * @return array
+     */
+    public function includedCompany(Company $company, $attributes = [])
+    {
+        return array_merge([
+            'id' => $company->id(),
+            'name' => $company->name(),
+            'email' => $company->email(),
+            'website' => $company->website(),
+            'telephone' => $company->telephone(),
+            'vat' => $company->vat(),
+            'accountRelation' => [
+                'data' => $this->includedAccount($company->account()),
+            ]
         ], $attributes);
     }
 }

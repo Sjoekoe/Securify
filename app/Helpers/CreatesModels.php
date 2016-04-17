@@ -2,6 +2,7 @@
 namespace App\Helpers;
 
 use App\Accounts\Account;
+use App\Companies\Company;
 use App\Employees\Employee;
 use App\Teams\Team;
 use App\Users\User;
@@ -57,6 +58,21 @@ trait CreatesModels
             'number' => '4567',
             'telephone' => '12345',
             'email' => 'employee@mail.com',
+        ], $attributes));
+    }
+
+    /**
+     * @param array $attributes
+     * @return \App\Companies\Company
+     */
+    public function createCompany(array $attributes = [])
+    {
+        return $this->modelFactory->create(Company::class, array_merge([
+            'name' => 'Company Name',
+            'telephone' => '345678',
+            'website' => 'http://www.company.com',
+            'email' => 'info@company.be',
+            'vat' => '12345678',
         ], $attributes));
     }
 

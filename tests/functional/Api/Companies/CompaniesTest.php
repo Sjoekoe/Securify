@@ -1,0 +1,117 @@
+<?php
+namespace functional\Api\Companies;
+
+use App\Companies\Company;
+use App\Helpers\DefaultIncludes;
+
+class CompaniesTest extends \TestCase
+{
+    use DefaultIncludes;
+
+    /** @test */
+    function it_can_get_all_companies_for_an_account()
+    {
+        $account = $this->createAccount();
+        $company = $this->createCompany([
+            'account_id' => $account->id(),
+        ]);
+
+        $this->get('/api/accounts/' . $account->id() . '/companies')
+            ->seeJsonEquals([
+                'data' => [
+                    $this->includedCompany($company),
+                ],
+                'meta' => [
+                    'pagination' => [
+                        'count' => 1,
+                        'current_page' => 1,
+                        'links' => [],
+                        'per_page' => 10,
+                        'total' => 1,
+                        'total_pages' => 1,
+                    ],
+                ]
+            ]);
+    }
+
+    /** @test */
+    function it_can_create_a_company()
+    {
+        $account = $this->createAccount();
+
+        $this->post('/api/accounts/' . $account->id() . '/companies', [
+            'name' => 'Creating company',
+            'email' => 'info@company.com',
+            'website' => 'www.company.com',
+            'telephone' => '123456',
+            'vat' => '567890',
+        ])->seeJsonEquals([
+            'data' => [
+                'id' => 1,
+                'name' => 'Creating company',
+                'email' => 'info@company.com',
+                'website' => 'http://www.company.com',
+                'telephone' => '123456',
+                'vat' => '567890',
+                'accountRelation' => [
+                    'data' => $this->includedAccount($account),
+                ],
+            ],
+        ]);
+    }
+
+    /** @test */
+    function it_can_show_a_company()
+    {
+        $account = $this->createAccount();
+        $company = $this->createCompany([
+            'account_id' => $account->id(),
+        ]);
+
+        $this->get('/api/accounts/' . $account->id() . '/companies/' . $company->id())
+            ->seeJsonEquals([
+                'data' => $this->includedCompany($company),
+            ]);
+    }
+
+    /** @test */
+    function it_can_update_a_company()
+    {
+        $account = $this->createAccount();
+        $company = $this->createCompany([
+            'account_id' => $account->id(),
+        ]);
+
+        $this->put('/api/accounts/' . $account->id() . '/companies/' . $company->id(), [
+            'name' => 'updated Name',
+            'email' => 'updated@test.com',
+            'website' => 'www.updated.com',
+        ])->seeJsonEquals([
+            'data' => $this->includedCompany($company, [
+                'name' => 'updated Name',
+                'email' => 'updated@test.com',
+                'website' => 'http://www.updated.com',
+            ]),
+        ]);
+    }
+
+    /** @test */
+    function it_can_delete_a_company()
+    {
+        $account = $this->createAccount();
+        $company = $this->createCompany([
+            'account_id' => $account->id(),
+        ]);
+
+        $this->seeInDatabase(Company::TABLE, [
+            'id' => $company->id(),
+        ]);
+
+        $this->delete('/api/accounts/' . $account->id() . '/companies/' . $company->id())
+            ->assertNoContent();
+
+        $this->missingFromDatabase(Company::TABLE, [
+            'id' => $company->id(),
+        ]);
+    }
+}

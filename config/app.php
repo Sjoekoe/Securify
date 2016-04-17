@@ -161,8 +161,10 @@ return [
          */
         App\Accounts\AccountServiceProvider::class,
         App\Auth\AuthServiceProvider::class,
+        App\Companies\CompanyServiceProvider::class,
         App\Core\Factories\ModelFactoryServiceProvider::class,
         App\Employees\EmployeeServiceProvider::class,
+        App\Http\HttpServiceProvider::class,
         App\JWT\JWTServiceProvider::class,
         App\Users\AuthServiceProvider::class,
         App\Teams\TeamServiceProvider::class,
@@ -172,9 +174,9 @@ return [
         /*
          * Third party providers
          */
+        Collective\Html\HtmlServiceProvider::class,
         Dingo\Api\Provider\LaravelServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
     ],
 
     /*
