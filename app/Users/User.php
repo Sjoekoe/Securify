@@ -1,10 +1,12 @@
 <?php
 namespace App\Users;
 
+use App\Accounts\Account;
+
 interface User
 {
     const TABLE = 'users';
-    
+
     /**
      * @return int
      */

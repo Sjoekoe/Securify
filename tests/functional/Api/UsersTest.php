@@ -39,7 +39,9 @@ class UsersTest extends \TestCase
 
         $this->post('/api/users', [
             'name' => 'John Doe',
-            'email' => 'john@doe.com'
+            'email' => 'john@doe.com',
+            'password' => 'password',
+            'password_confirmation' => 'password',
         ])->seeJsonEquals([
             'data' => [
                 'id' => 1,

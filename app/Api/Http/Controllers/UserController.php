@@ -31,6 +31,8 @@ class UserController extends Controller
     {
         $user = $this->users->create($request->all());
 
+        auth()->loginUsingId($user->id());
+
         return $this->response()->item($user, new UserTransformer());
     }
 

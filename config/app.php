@@ -160,14 +160,20 @@ return [
          * Own Service Providers
          */
         App\Accounts\AccountServiceProvider::class,
+        App\Auth\AuthServiceProvider::class,
         App\Core\Factories\ModelFactoryServiceProvider::class,
+        App\Employees\EmployeeServiceProvider::class,
         App\JWT\JWTServiceProvider::class,
+        App\Users\AuthServiceProvider::class,
         App\Users\UserServiceProvider::class,
+        App\Teams\TeamServiceProvider::class,
 
         /*
          * Third party providers
          */
         Dingo\Api\Provider\LaravelServiceProvider::class,
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
     ],
 
     /*
@@ -213,7 +219,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Form' => Collective\Html\FormFacade::class,
 
+        'Info' => App\Core\Info\Facades\Info::class,
     ],
 
 ];

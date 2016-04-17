@@ -1,6 +1,6 @@
 <?php
 
-use App\Users\User;
+use App\Users\EloquentUser;
 
 return [
 
@@ -38,8 +38,13 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        /*'web' => [
             'driver' => 'session',
+            'provider' => 'users',
+        ],*/
+
+        'web' => [
+            'driver' => 'securify',
             'provider' => 'users',
         ],
 
@@ -67,15 +72,19 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        /*'users' => [
             'driver' => 'eloquent',
-            'model' => User::class,
-        ],
+            'model' => EloquentUser::class,
+        ],*/
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'users' => [
+            'driver' => 'securify',
+        ]
+
+         /*'users' => [
+             'driver' => 'database',
+             'table' => 'users',
+         ],*/
     ],
 
     /*

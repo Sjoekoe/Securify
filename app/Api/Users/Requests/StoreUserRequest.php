@@ -3,7 +3,7 @@ namespace App\Api\Users\Requests;
 
 use App\Api\Http\Requests\Request;
 
-class StoreUserRequest extends Request 
+class StoreUserRequest extends Request
 {
     /**
      * @return bool
@@ -21,6 +21,7 @@ class StoreUserRequest extends Request
         return [
             'name' => 'required',
             'email' => 'email|required',
+            'password' => 'required|min:6|confirmed',
         ];
     }
 }
