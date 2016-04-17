@@ -5,6 +5,7 @@ use App\Accounts\Account;
 use App\Employees\Employee;
 use App\Teams\Team;
 use App\Users\User;
+use App\Visitors\Visitor;
 
 trait CreatesModels
 {
@@ -56,6 +57,17 @@ trait CreatesModels
             'number' => '4567',
             'telephone' => '12345',
             'email' => 'employee@mail.com',
+        ], $attributes));
+    }
+
+    /**
+     * @param array $attributes
+     * @return \App\Visitors\Visitor
+     */
+    public function createVisitor(array $attributes = [])
+    {
+        return $this->modelFactory->create(Visitor::class, array_merge([
+            'name' => 'Visitors name',
         ], $attributes));
     }
 }

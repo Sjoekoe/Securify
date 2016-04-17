@@ -31,6 +31,14 @@ $api->version('v1', function(Router $api) {
                 $api->put('/{employee}', ['as' => 'accounts.employees.update', 'uses' => 'EmployeeController@update']);
                 $api->delete('/{employee}', ['as' => 'accounts.employees.delete', 'uses' => 'EmployeeController@delete']);
             });
+
+            $api->group(['namespace' => 'Visitors\\', 'prefix' => '{account}/visitors'], function (Router $api) {
+                $api->get('/', ['as' => 'accounts.visitors.index', 'uses' => 'VisitorController@index']);
+                $api->post('/', ['as' => 'accounts.visitors.store', 'uses' => 'VisitorController@store']);
+                $api->get('/{visitor}', ['as' => 'accounts.visitors.show', 'uses' => 'VisitorController@show']);
+                $api->put('/{visitor}', ['as' => 'acccounts.visitors.update', 'uses' => 'VisitorController@update']);
+                $api->delete('/{visitor}', ['as' => 'accounts.visitors.delete', 'uses' => 'VisitorController@delete']);
+            });
         });
     });
 });

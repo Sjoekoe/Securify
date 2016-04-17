@@ -165,8 +165,9 @@ return [
         App\Employees\EmployeeServiceProvider::class,
         App\JWT\JWTServiceProvider::class,
         App\Users\AuthServiceProvider::class,
-        App\Users\UserServiceProvider::class,
         App\Teams\TeamServiceProvider::class,
+        App\Users\UserServiceProvider::class,
+        App\Visitors\VisitorServiceProvider::class,
 
         /*
          * Third party providers

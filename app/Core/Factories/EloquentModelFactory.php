@@ -9,6 +9,8 @@ use App\Teams\EloquentTeam;
 use App\Teams\Team;
 use App\Users\EloquentUser;
 use App\Users\User;
+use App\Visitors\EloquentVisitor;
+use App\Visitors\Visitor;
 use Illuminate\Database\Eloquent\Factory;
 
 class EloquentModelFactory
@@ -26,6 +28,7 @@ class EloquentModelFactory
         Employee::class => EloquentEmployee::class,
         Team::class => EloquentTeam::class,
         User::class => EloquentUser::class,
+        Visitor::class => EloquentVisitor::class,
     ];
 
     /**

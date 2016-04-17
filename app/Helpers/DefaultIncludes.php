@@ -5,6 +5,7 @@ use App\Accounts\Account;
 use App\Employees\Employee;
 use App\Teams\Team;
 use App\Users\User;
+use App\Visitors\Visitor;
 
 trait DefaultIncludes
 {
@@ -75,6 +76,25 @@ trait DefaultIncludes
             'accountRelation' => [
                 'data' => $this->includedAccount($employee->account()),
             ]
+        ], $attributes);
+    }
+
+    /**
+     * @param \App\Visitors\Visitor $visitor
+     * @param array $attributes
+     * @return array
+     */
+    public function includedVisitor(Visitor $visitor, $attributes = [])
+    {
+        return array_merge([
+            'id' => $visitor->id(),
+            'name' => $visitor->name(),
+            'accountRelation' => [
+                'data' => $this->includedAccount($visitor->account()),
+            ],
+            'employeeRelation' => [
+                'data' => $this->includedEmployee($visitor->employee()),
+            ],
         ], $attributes);
     }
 }
