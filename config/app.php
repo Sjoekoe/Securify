@@ -163,6 +163,7 @@ return [
         App\Auth\AuthServiceProvider::class,
         App\Companies\CompanyServiceProvider::class,
         App\Core\Factories\ModelFactoryServiceProvider::class,
+        App\Database\DatabaseServiceProvider::class,
         App\Employees\EmployeeServiceProvider::class,
         App\Http\HttpServiceProvider::class,
         App\JWT\JWTServiceProvider::class,
