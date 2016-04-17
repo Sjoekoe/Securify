@@ -1,7 +1,7 @@
 <?php
 namespace App\Visitors;
 
-use App\Employees\EloquentEmployee;
+use App\Companies\EloquentCompany;
 use App\Helpers\BelongsToAccount;
 use App\Helpers\StandardModel;
 use Illuminate\Database\Eloquent\Model;
@@ -28,16 +28,16 @@ class EloquentVisitor extends Model implements Visitor
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function employeeRelation()
+    public function companyRelation()
     {
-        return $this->belongsTo(EloquentEmployee::class, 'employee_id', 'id');
+        return $this->belongsTo(EloquentCompany::class, 'company_id', 'id');
     }
 
     /**
      * @return \App\Employees\Employee
      */
-    public function employee()
+    public function company()
     {
-        return $this->employeeRelation()->first();
+        return $this->companyRelation()->first();
     }
 }

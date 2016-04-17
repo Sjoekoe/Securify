@@ -21,9 +21,9 @@ interface Visitor
     public function account();
 
     /**
-     * @return \App\Employees\Employee
+     * @return \App\Companies\Company
      */
-    public function employee();
+    public function company();
 
     /**
      * @return \Carbon\Carbon

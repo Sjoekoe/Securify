@@ -2,7 +2,7 @@
 namespace App\Api\Visitors;
 
 use App\Api\Accounts\AccountTransformer;
-use App\Api\Employees\EmployeeTransformer;
+use App\Api\Companies\CompanyTransformer;
 use App\Visitors\Visitor;
 use League\Fractal\TransformerAbstract;
 
@@ -13,7 +13,7 @@ class VisitorTransformer extends TransformerAbstract
      */
     protected $defaultIncludes = [
         'accountRelation',
-        'employeeRelation',
+        'companyRelation',
     ];
 
     /**
@@ -41,8 +41,8 @@ class VisitorTransformer extends TransformerAbstract
      * @param \App\Visitors\Visitor $visitor
      * @return \League\Fractal\Resource\Item
      */
-    public function includeEmployeeRelation(Visitor $visitor)
+    public function includeCompanyRelation(Visitor $visitor)
     {
-        return $this->item($visitor->employee(), new EmployeeTransformer());
+        return $this->item($visitor->company(), new CompanyTransformer());
     }
 }

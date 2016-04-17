@@ -12,12 +12,12 @@ class VisitorsTest extends \TestCase
     function it_can_get_all_visitors_for_an_account()
     {
         $account = $this->createAccount();
-        $employee = $this->createEmployee([
+        $company = $this->createCompany([
             'account_id' => $account->id(),
         ]);
         $visitor = $this->createVisitor([
             'account_id' => $account->id(),
-            'employee_id' => $employee->id(),
+            'company_id' => $company->id(),
         ]);
 
         $this->get('/api/accounts/' . $account->id() . '/visitors')
@@ -42,13 +42,13 @@ class VisitorsTest extends \TestCase
     function it_can_create_a_visitor()
     {
         $account = $this->createAccount();
-        $employee = $this->createEmployee([
+        $company = $this->createCompany([
             'account_id' => $account->id(),
         ]);
 
         $this->post('/api/accounts/' . $account->id() . '/visitors', [
             'name' => 'post visitor',
-            'employee_id' => $employee->id(),
+            'company_id' => $company->id(),
         ])->seeJsonEquals([
             'data' => [
                 'id' => 1,
@@ -56,8 +56,8 @@ class VisitorsTest extends \TestCase
                 'accountRelation' => [
                     'data' => $this->includedAccount($account),
                 ],
-                'employeeRelation' => [
-                    'data' => $this->includedEmployee($employee),
+                'companyRelation' => [
+                    'data' => $this->includedCompany($company),
                 ],
             ],
         ]);
@@ -67,12 +67,12 @@ class VisitorsTest extends \TestCase
     function it_can_show_a_visitor()
     {
         $account = $this->createAccount();
-        $employee = $this->createEmployee([
+        $company = $this->createCompany([
             'account_id' => $account->id(),
         ]);
         $visitor = $this->createVisitor([
             'account_id' => $account->id(),
-            'employee_id' => $employee->id(),
+            'company_id' => $company->id(),
         ]);
 
         $this->get('/api/accounts/' . $account->id() . '/visitors/' . $visitor->id())
@@ -85,12 +85,12 @@ class VisitorsTest extends \TestCase
     function it_can_update_a_visitor()
     {
         $account = $this->createAccount();
-        $employee = $this->createEmployee([
+        $company = $this->createCompany([
             'account_id' => $account->id(),
         ]);
         $visitor = $this->createVisitor([
             'account_id' => $account->id(),
-            'employee_id' => $employee->id(),
+            'company_id' => $company->id(),
         ]);
 
         $this->put('/api/accounts/' . $account->id() . '/visitors/' . $visitor->id(), [
@@ -106,12 +106,12 @@ class VisitorsTest extends \TestCase
     function it_can_delete_a_visitor()
     {
         $account = $this->createAccount();
-        $employee = $this->createEmployee([
+        $company = $this->createCompany([
             'account_id' => $account->id(),
         ]);
         $visitor = $this->createVisitor([
             'account_id' => $account->id(),
-            'employee_id' => $employee->id(),
+            'company_id' => $company->id(),
         ]);
 
         $this->seeInDatabase(Visitor::TABLE, [

@@ -93,9 +93,9 @@ trait DefaultIncludes
             'accountRelation' => [
                 'data' => $this->includedAccount($visitor->account()),
             ],
-            'employeeRelation' => [
-                'data' => $this->includedEmployee($visitor->employee()),
-            ],
+            'companyRelation' => [
+                'data' => $this->includedCompany($visitor->company()),
+            ]
         ], $attributes);
     }
 

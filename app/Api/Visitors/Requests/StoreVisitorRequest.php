@@ -11,7 +11,7 @@ class StoreVisitorRequest extends Request
     public function rules()
     {
         return [
-            'employee_id' => 'int|required',
+            'company_id' => 'int|required',
             'name' => 'required',
         ];
     }

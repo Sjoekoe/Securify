@@ -25,7 +25,7 @@ class EloquentVisitorRepository implements VisitorRepository
         $visitor = new EloquentVisitor();
         $visitor->name = $values['name'];
         $visitor->account_id = $account->id();
-        $visitor->employee_id = $values['employee_id'];
+        $visitor->company_id = $values['company_id'];
 
         $visitor->save();
 
