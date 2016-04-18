@@ -7,6 +7,7 @@ use App\Employees\Employee;
 use App\Teams\Team;
 use App\Users\User;
 use App\Visitors\Visitor;
+use App\Visits\Visit;
 
 trait DefaultIncludes
 {
@@ -116,6 +117,31 @@ trait DefaultIncludes
             'accountRelation' => [
                 'data' => $this->includedAccount($company->account()),
             ]
+        ], $attributes);
+    }
+
+    /**
+     * @param \App\Visits\Visit $visit
+     * @param $attributes
+     * @return array
+     */
+    public function includedVisit(Visit $visit, $attributes = [])
+    {
+        return array_merge([
+            'id' => $visit->id(),
+            'expected_arrival' => $visit->expectedArrival()->toIso8601String(),
+            'expected_departure' => $visit->expectedDeparture()->toIso8601String(),
+            'arrival' => $visit->arrival()->toIso8601String(),
+            'departure' => $visit->departure()->toIso8601String(),
+            'accountRelation' => [
+                'data' => $this->includedAccount($visit->account()),
+            ],
+            'employeeRelation' => [
+                'data' => $this->includedEmployee($visit->employee()),
+            ],
+            'visitorRelation' => [
+                'data' => $this->includedVisitor($visit->visitor()),
+            ],
         ], $attributes);
     }
 }

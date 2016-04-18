@@ -6,6 +6,7 @@ use App\Employees\EloquentEmployee;
 use App\Teams\EloquentTeam;
 use App\Users\EloquentUser;
 use App\Visitors\EloquentVisitor;
+use App\Visits\EloquentVisit;
 use Faker\Generator;
 
 $factory->define(EloquentUser::class, function (Generator $faker) {
@@ -24,5 +25,8 @@ $factory->define(EloquentVisitor::class, function (Generator $faker) {
     return [];
 });
 $factory->define(EloquentCompany::class, function (Generator $faker) {
+    return [];
+});
+$factory->define(EloquentVisit::class, function (Generator $faker) {
     return [];
 });

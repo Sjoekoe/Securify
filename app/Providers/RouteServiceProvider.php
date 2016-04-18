@@ -6,6 +6,7 @@ use App\Companies\CompanyRouteBinding;
 use App\Employees\EmployeeRouteBinding;
 use App\Teams\TeamRouteBinding;
 use App\Visitors\VisitorRouteBinding;
+use App\Visits\VisitRouteBinding;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use App\Users\UserRouteBinding;
@@ -36,6 +37,7 @@ class RouteServiceProvider extends ServiceProvider
         $router->bind('employee', EmployeeRouteBinding::class);
         $router->bind('team', TeamRouteBinding::class);
         $router->bind('user', UserRouteBinding::class);
+        $router->bind('visit', VisitRouteBinding::class);
         $router->bind('visitor', VisitorRouteBinding::class);
     }
 

@@ -171,6 +171,7 @@ return [
         App\Teams\TeamServiceProvider::class,
         App\Users\UserServiceProvider::class,
         App\Visitors\VisitorServiceProvider::class,
+        App\Visits\VisitServiceProvider::class,
 
         /*
          * Third party providers

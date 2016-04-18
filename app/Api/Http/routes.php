@@ -47,6 +47,12 @@ $api->version('v1', function(Router $api) {
                 $api->put('/{company}', ['as' => 'accounts.companies.update', 'uses' => 'CompanyController@update']);
                 $api->delete('/{company}', ['as' => 'accounts.companies.delete', 'uses' => 'CompanyController@delete']);
             });
+
+            $api->group(['namespace' => 'Visits\\', 'prefix' => '{account}/visits'], function (Router $api) {
+                $api->get('/', ['as' => 'accounts.visits.index', 'uses' => 'VisitController@index']);
+                $api->get('/{visit}', ['as' => 'accounts.visits.show', 'uses' => 'VisitController@show']);
+                $api->delete('/{visit}', ['as' => 'accounts.visits.delete', 'uses' => 'VisitController@delete']);
+            });
         });
     });
 });

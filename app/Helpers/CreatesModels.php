@@ -7,6 +7,8 @@ use App\Employees\Employee;
 use App\Teams\Team;
 use App\Users\User;
 use App\Visitors\Visitor;
+use App\Visits\Visit;
+use Carbon\Carbon;
 
 trait CreatesModels
 {
@@ -84,6 +86,38 @@ trait CreatesModels
     {
         return $this->modelFactory->create(Visitor::class, array_merge([
             'name' => 'Visitors name',
+        ], $attributes));
+    }
+
+    /**
+     * @param \App\Accounts\Account $account
+     * @param array $attributes
+     * @return \App\Visits\Visit
+     */
+    public function createVisit(Account $account, array $attributes = [])
+    {
+        $now = Carbon::now();
+        $later = Carbon::now()->addHour();
+
+        $employee = $this->createEmployee([
+            'account_id' => $account->id(),
+        ]);
+        $company = $this->createCompany([
+            'account_id' => $account->id(),
+        ]);
+        $visitor = $this->createVisitor([
+            'account_id' => $account->id(),
+            'company_id' => $company->id(),
+        ]);
+
+        return $this->modelFactory->create(Visit::class, array_merge([
+            'account_id' => $account->id(),
+            'employee_id' => $employee->id(),
+            'visitor_id' => $visitor->id(),
+            'expected_arrival' => $now,
+            'expected_departure' => $later,
+            'arrival' => $now,
+            'departure' => $later,
         ], $attributes));
     }
 }
