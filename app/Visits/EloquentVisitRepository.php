@@ -2,6 +2,7 @@
 namespace App\Visits;
 
 use App\Accounts\Account;
+use Carbon\Carbon;
 
 class EloquentVisitRepository implements VisitRepository
 {
@@ -13,6 +14,26 @@ class EloquentVisitRepository implements VisitRepository
     public function __construct(EloquentVisit $visit)
     {
         $this->visit = $visit;
+    }
+
+    /**
+     * @param \App\Visits\Visit $visit
+     * @param array $values
+     * @return \App\Visits\Visit
+     */
+    public function update(Visit $visit, array $values)
+    {
+        if (array_key_exists('arrival', $values)) {
+            $visit->arrival = Carbon::createFromFormat('d/m/Y', $values['arrival']);
+        }
+
+        if (array_key_exists('departure', $values)) {
+            $visit->departure = Carbon::createFromFormat('d/m/Y', $values['departure']);
+        }
+
+        $visit->save();
+
+        return $visit;
     }
 
     /**

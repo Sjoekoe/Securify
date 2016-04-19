@@ -43,7 +43,7 @@ class EloquentVisit extends Model implements Visit
      */
     public function arrival()
     {
-        return Carbon::parse($this->arrival);
+        return $this->arrival ? Carbon::parse($this->arrival) : null;
     }
 
     /**
@@ -51,7 +51,7 @@ class EloquentVisit extends Model implements Visit
      */
     public function departure()
     {
-        return Carbon::parse($this->departure);
+        return $this->departure ? Carbon::parse($this->departure) : null;
     }
 
     /**
@@ -84,5 +84,13 @@ class EloquentVisit extends Model implements Visit
     public function employee()
     {
         return $this->employeeRelation()->first();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCompleted()
+    {
+        return $this->arrival() && $this->departure();
     }
 }

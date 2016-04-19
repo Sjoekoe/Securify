@@ -46,6 +46,11 @@ interface Visit
     public function employee();
 
     /**
+     * @return bool
+     */
+    public function isCompleted();
+
+    /**
      * @return \Carbon\Carbon
      */
     public function createdAt();

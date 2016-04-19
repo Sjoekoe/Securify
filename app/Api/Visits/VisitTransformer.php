@@ -28,8 +28,9 @@ class VisitTransformer extends TransformerAbstract
             'id' => $visit->id(),
             'expected_arrival' => $visit->expectedArrival()->toIso8601String(),
             'expected_departure' => $visit->expectedDeparture()->toIso8601String(),
-            'arrival' => $visit->arrival()->toIso8601String(),
-            'departure' => $visit->departure()->toIso8601String(),
+            'arrival' => $visit->arrival() ? $visit->arrival()->toIso8601String() : null,
+            'departure' => $visit->departure() ? $visit->departure()->toIso8601String() : null,
+            'is_completed' => $visit->isCompleted(),
         ];
     }
 

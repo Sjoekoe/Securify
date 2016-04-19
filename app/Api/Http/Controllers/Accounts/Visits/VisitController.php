@@ -3,6 +3,7 @@ namespace App\Api\Http\Controllers\Accounts\Visits;
 
 use App\Accounts\Account;
 use App\Api\Http\Controller;
+use App\Api\Visits\Requests\UpdateVisitsRequest;
 use App\Api\Visits\VisitTransformer;
 use App\Visits\Visit;
 use App\Visits\VisitRepository;
@@ -31,10 +32,17 @@ class VisitController extends Controller
         return $this->response()->item($visit, new VisitTransformer());
     }
 
+    public function update(UpdateVisitsRequest $request, Account $account, Visit $visit)
+    {
+        $visit = $this->visits->update($visit, $request->all());
+
+        return $this->response()->item($visit, new VisitTransformer());
+    }
+
     public function delete(Account $account, Visit $visit)
     {
         $this->visits->delete($visit);
-        
+
         return $this->response()->noContent();
     }
 }

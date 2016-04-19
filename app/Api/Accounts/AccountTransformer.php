@@ -17,6 +17,8 @@ class AccountTransformer extends TransformerAbstract
             'name' => $account->name(),
             'website' => $account->website(),
             'vat' => $account->vat(),
+            'date_format' => $account->dateFormat(),
+            'time_format' => $account->timeFormat(),
             'created_at' => $account->createdAt()->toIso8601String(),
             'updated_at' => $account->updatedAt()->toIso8601String(),
         ];

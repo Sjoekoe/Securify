@@ -26,6 +26,16 @@ interface Account
     public function website();
 
     /**
+     * @return string
+     */
+    public function dateFormat();
+
+    /**
+     * @return string
+     */
+    public function timeFormat();
+
+    /**
      * @return \Carbon\Carbon
      */
     public function createdAt();

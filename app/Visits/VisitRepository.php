@@ -7,6 +7,13 @@ interface VisitRepository
 {
     /**
      * @param \App\Visits\Visit $visit
+     * @param array $values
+     * @return \App\Visits\Visit
+     */
+    public function update(Visit $visit, array $values);
+    
+    /**
+     * @param \App\Visits\Visit $visit
      */
     public function delete(Visit $visit);
     

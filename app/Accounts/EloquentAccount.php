@@ -10,7 +10,7 @@ class EloquentAccount extends Model implements Account
     
     protected $table = self::TABLE;
     
-    protected $fillable = ['name', 'vat', 'website'];
+    protected $fillable = ['name', 'vat', 'website', 'date_format', 'time_format'];
 
     /**
      * @return string
@@ -34,5 +34,21 @@ class EloquentAccount extends Model implements Account
     public function website()
     {
         return $this->website;
+    }
+
+    /**
+     * @return string
+     */
+    public function dateFormat()
+    {
+        return $this->date_format;
+    }
+
+    /**
+     * @return string
+     */
+    public function timeFormat()
+    {
+        return $this->time_format;
     }
 }

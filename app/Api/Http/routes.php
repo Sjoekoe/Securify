@@ -51,6 +51,7 @@ $api->version('v1', function(Router $api) {
             $api->group(['namespace' => 'Visits\\', 'prefix' => '{account}/visits'], function (Router $api) {
                 $api->get('/', ['as' => 'accounts.visits.index', 'uses' => 'VisitController@index']);
                 $api->get('/{visit}', ['as' => 'accounts.visits.show', 'uses' => 'VisitController@show']);
+                $api->put('/{visit}', ['as' => 'accounts.visits.update', 'uses' => 'VisitController@update']);
                 $api->delete('/{visit}', ['as' => 'accounts.visits.delete', 'uses' => 'VisitController@delete']);
             });
         });
