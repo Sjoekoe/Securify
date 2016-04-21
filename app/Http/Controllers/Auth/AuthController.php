@@ -2,12 +2,13 @@
 namespace App\Http\Controllers\Auth;
 
 use Auth;
+use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\RedirectsUsers;
 use Illuminate\Http\Request;
-use Validator;
-use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Lang;
+use Validator;
 
 class AuthController extends Controller
 {

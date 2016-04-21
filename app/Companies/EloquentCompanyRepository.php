@@ -25,10 +25,13 @@ class EloquentCompanyRepository implements CompanyRepository
         $company = new EloquentCompany();
         $company->account_id = $account->id();
         $company->name = $values['name'];
-        $company->email = $values['email'];
-        $company->vat = $values['vat'];
-        $company->telephone = $values['telephone'];
-        $company->website = securify_protocol_prepend($values['website']);
+        $company->email = array_get($values, 'email');
+        $company->vat = array_get($values, 'vat');
+        $company->telephone = array_get($values, 'telephone');
+
+        if (array_key_exists('website', $values)) {
+            $company->website = securify_protocol_prepend($values['website']);
+        }
 
         $company->save();
 

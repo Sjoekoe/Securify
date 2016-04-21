@@ -41,6 +41,10 @@ class EloquentVisitorRepository implements VisitorRepository
     {
         $visitor->name = $values['name'];
 
+        if (array_key_exists('company_id', $values)) {
+            $visitor->company_id = $values['company_id'];
+        }
+
         $visitor->save();
 
         return $visitor;

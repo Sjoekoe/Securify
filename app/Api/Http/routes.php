@@ -54,6 +54,11 @@ $api->version('v1', function(Router $api) {
                 $api->put('/{visit}', ['as' => 'accounts.visits.update', 'uses' => 'VisitController@update']);
                 $api->delete('/{visit}', ['as' => 'accounts.visits.delete', 'uses' => 'VisitController@delete']);
             });
+
+            $api->group(['namespace' => 'Visitations\\', 'prefix' => '{account}/visitations'], function(Router $api) {
+                $api->post('/', ['as' => 'accounts.visitations.store', 'uses' => 'VisitationController@store']);
+                $api->put('/{visit}', ['as' => 'accounts.visitations.update', 'uses' => 'VisitationController@update']);
+            });
         });
     });
 });

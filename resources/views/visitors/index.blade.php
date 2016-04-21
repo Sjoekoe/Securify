@@ -17,7 +17,7 @@
                             <a href="#" class="panel-refresh" @click="refresh">
                                 <i class="im-spinner6"></i>
                             </a>
-                            <a href="#">
+                            <a href="{{ route('visitors.create') }}">
                                 <i class="fa fa-plus"></i>
                             </a>
                         </div>
@@ -73,7 +73,7 @@
 
                                     <td>@{{ visit.employeeRelation.data.name }}</td>
                                     <td>
-                                        <a href="#">
+                                        <a href="/visitors/edit/@{{ visit.id }}">
                                             <i class="fa fa-pencil"></i>
                                         </a>
                                         <a href="#" @click="removeVisitor(visit)">

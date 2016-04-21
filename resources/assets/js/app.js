@@ -15,5 +15,7 @@ new Vue({
         createemployee: require('./components/employees/CreateEmployee'),
         editemployee: require('./components/employees/EditEmployee'),
         visitstable: require('./components/visits/VisitsTable'),
+        createvisit: require('./components/visits/CreateVisit'),
+        updatevisit: require('./components/visits/UpdateVisit'),
     }
 });
