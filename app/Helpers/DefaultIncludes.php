@@ -4,6 +4,7 @@ namespace App\Helpers;
 use App\Accounts\Account;
 use App\Companies\Company;
 use App\Employees\Employee;
+use App\Keys\Key;
 use App\Teams\Team;
 use App\Users\User;
 use App\Visitors\Visitor;
@@ -39,6 +40,8 @@ trait DefaultIncludes
             'name' => $account->name(),
             'website' => $account->website(),
             'vat' => $account->vat(),
+            'date_format' => $account->dateFormat(),
+            'time_format' => $account->timeFormat(),
             'created_at' => $account->createdAt()->toIso8601String(),
             'updated_at' => $account->updatedAt()->toIso8601String(),
         ], $attributes);
@@ -141,6 +144,25 @@ trait DefaultIncludes
             ],
             'visitorRelation' => [
                 'data' => $this->includedVisitor($visit->visitor()),
+            ],
+        ], $attributes);
+    }
+
+    /**
+     * @param \App\Keys\Key $key
+     * @param array $attributes
+     * @return array
+     */
+    public function includedKey(Key $key, $attributes = [])
+    {
+        return array_merge([
+            'id' => $key->id(),
+            'name' => $key->name(),
+            'number' => $key->number(),
+            'key_code' => $key->keyCode(),
+            'description' => $key->description(),
+            'accountRelation' => [
+                'data' => $this->includedAccount($key->account()),
             ],
         ], $attributes);
     }

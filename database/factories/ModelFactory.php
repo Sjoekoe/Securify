@@ -3,6 +3,7 @@
 use App\Accounts\EloquentAccount;
 use App\Companies\EloquentCompany;
 use App\Employees\EloquentEmployee;
+use App\Keys\EloquentKey;
 use App\Teams\EloquentTeam;
 use App\Users\EloquentUser;
 use App\Visitors\EloquentVisitor;
@@ -28,5 +29,8 @@ $factory->define(EloquentCompany::class, function (Generator $faker) {
     return [];
 });
 $factory->define(EloquentVisit::class, function (Generator $faker) {
+    return [];
+});
+$factory->define(EloquentKey::class, function (Generator $faker) {
     return [];
 });

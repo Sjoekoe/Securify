@@ -59,6 +59,14 @@ $api->version('v1', function(Router $api) {
                 $api->post('/', ['as' => 'accounts.visitations.store', 'uses' => 'VisitationController@store']);
                 $api->put('/{visit}', ['as' => 'accounts.visitations.update', 'uses' => 'VisitationController@update']);
             });
+
+            $api->group(['namespace' => 'Keys\\', 'prefix' => '{account}/keys'], function (Router $api) {
+                $api->get('/', ['as' => 'accounts.keys.index', 'uses' => 'KeyController@index']);
+                $api->post('/', ['as' => 'accounts.keys.store', 'uses' => 'KeyController@store']);
+                $api->get('/{key}', ['as' => 'accounts.keys.show', 'uses' => 'KeyController@show']);
+                $api->put('/{key}', ['as' => 'accounts.keys.update', 'uses' => 'KeyController@update']);
+                $api->delete('/{key}', ['as' => 'accounts.keys.delete', 'uses' => 'KeyController@delete']);
+            });
         });
     });
 });

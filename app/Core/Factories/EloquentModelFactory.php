@@ -7,6 +7,8 @@ use App\Companies\Company;
 use App\Companies\EloquentCompany;
 use App\Employees\EloquentEmployee;
 use App\Employees\Employee;
+use App\Keys\EloquentKey;
+use App\Keys\Key;
 use App\Teams\EloquentTeam;
 use App\Teams\Team;
 use App\Users\EloquentUser;
@@ -31,6 +33,7 @@ class EloquentModelFactory
         Account::class => EloquentAccount::class,
         Company::class => EloquentCompany::class,
         Employee::class => EloquentEmployee::class,
+        Key::class => EloquentKey::class,
         Team::class => EloquentTeam::class,
         User::class => EloquentUser::class,
         Visit::class => EloquentVisit::class,

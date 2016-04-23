@@ -4,6 +4,7 @@ namespace App\Helpers;
 use App\Accounts\Account;
 use App\Companies\Company;
 use App\Employees\Employee;
+use App\Keys\Key;
 use App\Teams\Team;
 use App\Users\User;
 use App\Visitors\Visitor;
@@ -34,6 +35,8 @@ trait CreatesModels
             'name' => 'Foo Company',
             'website' => 'www.test.com',
             'vat' => '123456',
+            'date_format' => 'd-m-y',
+            'time_format' => 'HH:MM',
         ], $attributes));
     }
 
@@ -118,6 +121,20 @@ trait CreatesModels
             'expected_departure' => $later,
             'arrival' => $now,
             'departure' => $later,
+        ], $attributes));
+    }
+
+    /**
+     * @param array $attributes
+     * @return \App\Keys\Key
+     */
+    public function createKey(array $attributes = [])
+    {
+        return $this->modelFactory->create(Key::class, array_merge([
+            'number' => '1234',
+            'key_code' => 'ab-34',
+            'name' => 'First Key',
+            'description' => 'Some description',
         ], $attributes));
     }
 }

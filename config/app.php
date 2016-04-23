@@ -167,6 +167,7 @@ return [
         App\Employees\EmployeeServiceProvider::class,
         App\Http\HttpServiceProvider::class,
         App\JWT\JWTServiceProvider::class,
+        App\Keys\KeyServiceProvider::class,
         App\Users\AuthServiceProvider::class,
         App\Teams\TeamServiceProvider::class,
         App\Users\UserServiceProvider::class,
