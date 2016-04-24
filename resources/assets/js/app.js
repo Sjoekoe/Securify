@@ -19,5 +19,6 @@ new Vue({
         updatevisit: require('./components/visits/UpdateVisit'),
         keyoverview: require('./components/keys/KeyOverview'),
         createkey: require('./components/keys/CreateKey'),
+        updatekey: require('./components/keys/UpdateKey'),
     }
 });

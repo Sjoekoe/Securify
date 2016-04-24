@@ -45,7 +45,7 @@
                                     <td>@{{ key.key_code }}</td>
                                     <td>@{{ key.description }}</td>
                                     <td>
-                                        <a href="/visitors/edit/@{{ key.id }}">
+                                        <a href="/keys/edit/@{{ key.id }}">
                                             <i class="fa fa-pencil"></i>
                                         </a>
                                         <a href="#" @click="removeKey(key)">

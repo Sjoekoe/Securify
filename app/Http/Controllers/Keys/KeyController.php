@@ -1,7 +1,9 @@
 <?php
 namespace App\Http\Controllers\Keys;
 
+use App\Core\Info\Info;
 use App\Http\Controllers\Controller;
+use App\Keys\Key;
 
 class KeyController extends Controller
 {
@@ -18,5 +20,12 @@ class KeyController extends Controller
     public function create()
     {
         return view('keys.create');
+    }
+    
+    public function edit(Info $info, Key $key)
+    {
+        $info->flash('key', $key->id());
+        
+        return view('keys.edit');
     }
 }
