@@ -16,6 +16,11 @@
                     Employees <i class="im-mug"></i>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('keys.index') }}">
+                    Keys <i class="im-key2"></i>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

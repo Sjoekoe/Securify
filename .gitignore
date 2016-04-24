@@ -10,3 +10,7 @@ Homestead.json
 .env
 .idea/
 .vagrant/
+
+public/js/app.js
+
+public/js/app.js.map

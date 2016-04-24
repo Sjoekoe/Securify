@@ -19,6 +19,10 @@ Route::group(['namespace' => 'Employees'], function() {
     require __DIR__ . '/Routes/employees.php';
 });
 
+Route::group(['namespace' => 'Keys'], function() {
+    require __DIR__ . '/Routes/keys.php';
+});
+
 Route::group(['namespace' => 'Pages'], function() {
     require __DIR__ . '/Routes/pages.php';
 });

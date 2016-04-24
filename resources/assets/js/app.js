@@ -17,5 +17,7 @@ new Vue({
         visitstable: require('./components/visits/VisitsTable'),
         createvisit: require('./components/visits/CreateVisit'),
         updatevisit: require('./components/visits/UpdateVisit'),
+        keyoverview: require('./components/keys/KeyOverview'),
+        createkey: require('./components/keys/CreateKey'),
     }
 });
