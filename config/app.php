@@ -166,6 +166,7 @@ return [
         App\Database\DatabaseServiceProvider::class,
         App\Employees\EmployeeServiceProvider::class,
         App\Http\HttpServiceProvider::class,
+        App\Incidents\IncidentServiceProvider::class,
         App\JWT\JWTServiceProvider::class,
         App\Keys\KeyServiceProvider::class,
         App\Users\AuthServiceProvider::class,

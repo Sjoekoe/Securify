@@ -67,6 +67,14 @@ $api->version('v1', function(Router $api) {
                 $api->put('/{key}', ['as' => 'accounts.keys.update', 'uses' => 'KeyController@update']);
                 $api->delete('/{key}', ['as' => 'accounts.keys.delete', 'uses' => 'KeyController@delete']);
             });
+
+            $api->group(['namespace' => 'Incidents\\', 'prefix' => '{account}/incidents'], function(Router $api) {
+                $api->get('/', ['as' => 'accounts.incidents.index', 'uses' => 'IncidentController@index']);
+                $api->post('/', ['as' => 'accounts.incidents.store', 'uses' => 'IncidentController@store']);
+                $api->get('/{incident}', ['as' => 'accounts.incidents.show', 'uses' => 'IncidentController@show']);
+                $api->put('/{incident}', ['as' => 'accounts.incidents.update', 'uses' => 'IncidentController@update']);
+                $api->delete('/{incident}', ['as' => 'accounts.incidents.delete', 'uses' => 'IncidentController@delete']);
+            });
         });
     });
 });

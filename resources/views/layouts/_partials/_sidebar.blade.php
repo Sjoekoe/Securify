@@ -21,6 +21,11 @@
                     Keys <i class="im-key2"></i>
                 </a>
             </li>
+            <li>
+                <a href="#">
+                    Incidents <i class="im-fire"></i>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

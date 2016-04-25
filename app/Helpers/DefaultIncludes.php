@@ -4,6 +4,7 @@ namespace App\Helpers;
 use App\Accounts\Account;
 use App\Companies\Company;
 use App\Employees\Employee;
+use App\Incidents\Incident;
 use App\Keys\Key;
 use App\Teams\Team;
 use App\Users\User;
@@ -164,6 +165,24 @@ trait DefaultIncludes
             'accountRelation' => [
                 'data' => $this->includedAccount($key->account()),
             ],
+        ], $attributes);
+    }
+
+    /**
+     * @param \App\Incidents\Incident $incident
+     * @param array $attributes
+     * @return array
+     */
+    public function includedIncident(Incident $incident, $attributes = [])
+    {
+        return array_merge([
+            'id' => $incident->id(),
+            'type' => $incident->type(),
+            'created_at' => $incident->createdAt()->toIso8601String(),
+            'ended_at' => $incident->endedAt()->toIso8601String(),
+            'accountRelation' => [
+                'data' => $this->includedAccount($incident->account()),
+            ]
         ], $attributes);
     }
 }

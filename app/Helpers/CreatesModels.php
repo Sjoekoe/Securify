@@ -4,6 +4,7 @@ namespace App\Helpers;
 use App\Accounts\Account;
 use App\Companies\Company;
 use App\Employees\Employee;
+use App\Incidents\Incident;
 use App\Keys\Key;
 use App\Teams\Team;
 use App\Users\User;
@@ -135,6 +136,20 @@ trait CreatesModels
             'key_code' => 'ab-34',
             'name' => 'First Key',
             'description' => 'Some description',
+        ], $attributes));
+    }
+
+    /**
+     * @param array $attributes
+     * @return \App\Incidents\Incident
+     */
+    public function createIncident(array $attributes = [])
+    {
+        $now = Carbon::now();
+
+        return $this->modelFactory->create(Incident::class, array_merge([
+            'type' => 1,
+            'ended_at' => $now,
         ], $attributes));
     }
 }
