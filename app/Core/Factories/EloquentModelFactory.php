@@ -13,6 +13,8 @@ use App\Keys\EloquentKey;
 use App\Keys\Key;
 use App\Locations\Buildings\Building;
 use App\Locations\Buildings\EloquentBuilding;
+use App\Locations\Doors\Door;
+use App\Locations\Doors\EloquentDoor;
 use App\Teams\EloquentTeam;
 use App\Teams\Team;
 use App\Users\EloquentUser;
@@ -37,6 +39,7 @@ class EloquentModelFactory
         Account::class => EloquentAccount::class,
         Building::class => EloquentBuilding::class,
         Company::class => EloquentCompany::class,
+        Door::class => EloquentDoor::class,
         Employee::class => EloquentEmployee::class,
         Incident::class => EloquentIncident::class,
         Key::class => EloquentKey::class,

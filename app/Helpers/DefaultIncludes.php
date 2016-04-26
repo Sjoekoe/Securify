@@ -7,6 +7,7 @@ use App\Employees\Employee;
 use App\Incidents\Incident;
 use App\Keys\Key;
 use App\Locations\Buildings\Building;
+use App\Locations\Doors\Door;
 use App\Teams\Team;
 use App\Users\User;
 use App\Visitors\Visitor;
@@ -200,6 +201,29 @@ trait DefaultIncludes
             'name' => $building->name(),
             'accountRelation' => [
                 'data' => $this->includedAccount($building->account()),
+            ],
+        ], $attributes);
+    }
+
+    /**
+     * @param \App\Locations\Doors\Door $door
+     * @param array $attributes
+     * @return array
+     */
+    public function includedDoor(Door $door, $attributes = [])
+    {
+        return array_merge([
+            'id' => $door->id(),
+            'name' => $door->name(),
+            'description' => $door->description(),
+            'accountRelation' => [
+                'data' => $this->includedAccount($door->account()),
+            ],
+            'buildingRelation' => [
+                'data' => $this->includedBuilding($door->building()),
+            ],
+            'keyRelation' => [
+                'data' => $this->includedKey($door->key()),
             ],
         ], $attributes);
     }

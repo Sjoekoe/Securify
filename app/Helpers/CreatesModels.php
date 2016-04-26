@@ -7,6 +7,7 @@ use App\Employees\Employee;
 use App\Incidents\Incident;
 use App\Keys\Key;
 use App\Locations\Buildings\Building;
+use App\Locations\Doors\Door;
 use App\Teams\Team;
 use App\Users\User;
 use App\Visitors\Visitor;
@@ -162,6 +163,18 @@ trait CreatesModels
     {
         return $this->modelFactory->create(Building::class, array_merge([
             'name' => 'Foo building',
+        ], $attributes));
+    }
+
+    /**
+     * @param array $attributes
+     * @return \App\Locations\Doors\Door
+     */
+    public function createDoor(array $attributes = [])
+    {
+        return $this->modelFactory->create(Door::class, array_merge([
+            'name' => 'Test Door',
+            'description' => 'Lorem ipsum dolores est',
         ], $attributes));
     }
 }

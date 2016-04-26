@@ -84,6 +84,14 @@ $api->version('v1', function(Router $api) {
                     $api->put('/{building}', ['as' => 'accounts.buildings.update', 'uses' => 'BuildingController@update']);
                     $api->delete('/{building}', ['as' => 'accounts.buildings.delete', 'uses' => 'BuildingController@delete']);
                 });
+
+                $api->group(['namespace' => 'Doors\\', 'prefix' => '{account}/doors'], function (Router $api) {
+                    $api->get('/', ['as' => 'account.doors.index', 'uses' => 'DoorController@index']);
+                    $api->post('/', ['as' => 'account.doors.store', 'uses' => 'DoorController@store']);
+                    $api->get('/{door}', ['as' => 'account.doors.show', 'uses' => 'DoorController@show']);
+                    $api->put('/{door}', ['as' => 'account.doors.update', 'uses' => 'DoorController@update']);
+                    $api->delete('/{door}', ['as' => 'account.doors.delete', 'uses' => 'DoorController@delete']);
+                });
             });
         });
     });

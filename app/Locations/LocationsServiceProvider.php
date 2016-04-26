@@ -4,6 +4,9 @@ namespace App\Locations;
 use App\Locations\Buildings\BuildingRepository;
 use App\Locations\Buildings\EloquentBuilding;
 use App\Locations\Buildings\EloquentBuildingRepository;
+use App\Locations\Doors\DoorRepository;
+use App\Locations\Doors\EloquentDoor;
+use App\Locations\Doors\EloquentDoorRepository;
 use Illuminate\Support\ServiceProvider;
 
 class LocationsServiceProvider extends ServiceProvider
@@ -18,6 +21,10 @@ class LocationsServiceProvider extends ServiceProvider
         $this->app->singleton(BuildingRepository::class, function() {
             return new EloquentBuildingRepository(new EloquentBuilding());
         });
+        
+        $this->app->singleton(DoorRepository::class, function() {
+            return new EloquentDoorRepository(new EloquentDoor());
+        });
     }
 
     /**
@@ -27,6 +34,7 @@ class LocationsServiceProvider extends ServiceProvider
     {
         return [
             BuildingRepository::class,
+            DoorRepository::class,
         ];
     }
 }
