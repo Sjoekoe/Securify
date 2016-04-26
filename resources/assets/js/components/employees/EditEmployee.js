@@ -1,4 +1,5 @@
 var Vue = require('vue');
+var apiToken = window.securify.auth ? window.securify.auth.jwt : null;
 
 module.exports = Vue.extend({
     template: '#edit-employee',
@@ -21,7 +22,7 @@ module.exports = Vue.extend({
     },
 
     ready: function() {
-        $.getJSON('/api/accounts/' + window.securify.auth.account.id + '/employees/' + window.securify.employee, function (employee) {
+        $.getJSON('/api/accounts/' + window.securify.auth.account.id + '/employees/' + window.securify.employee  + '?token=' + apiToken, function (employee) {
             this.name = employee.data.name;
             this.email = employee.data.email;
             this.number = employee.data.number;
@@ -41,7 +42,7 @@ module.exports = Vue.extend({
             }
 
             $.ajax({
-                url: '/api/accounts/' + window.securify.auth.account.id + '/employees/' + employee,
+                url: '/api/accounts/' + window.securify.auth.account.id + '/employees/' + employee  + '?token=' + apiToken,
                 type: 'put',
                 data: data,
                 error: function(errors) {

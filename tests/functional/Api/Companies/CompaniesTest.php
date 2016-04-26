@@ -16,7 +16,7 @@ class CompaniesTest extends \TestCase
             'account_id' => $account->id(),
         ]);
 
-        $this->get('/api/accounts/' . $account->id() . '/companies')
+        $this->get('/api/accounts/' . $account->id() . '/companies', $this->setJWTHeaders())
             ->seeJsonEquals([
                 'data' => [
                     $this->includedCompany($company),
@@ -45,7 +45,7 @@ class CompaniesTest extends \TestCase
             'website' => 'www.company.com',
             'telephone' => '123456',
             'vat' => '567890',
-        ])->seeJsonEquals([
+        ], $this->setJWTHeaders())->seeJsonEquals([
             'data' => [
                 'id' => 1,
                 'name' => 'Creating company',
@@ -68,7 +68,7 @@ class CompaniesTest extends \TestCase
             'account_id' => $account->id(),
         ]);
 
-        $this->get('/api/accounts/' . $account->id() . '/companies/' . $company->id())
+        $this->get('/api/accounts/' . $account->id() . '/companies/' . $company->id(), $this->setJWTHeaders())
             ->seeJsonEquals([
                 'data' => $this->includedCompany($company),
             ]);
@@ -86,7 +86,7 @@ class CompaniesTest extends \TestCase
             'name' => 'updated Name',
             'email' => 'updated@test.com',
             'website' => 'www.updated.com',
-        ])->seeJsonEquals([
+        ], $this->setJWTHeaders())->seeJsonEquals([
             'data' => $this->includedCompany($company, [
                 'name' => 'updated Name',
                 'email' => 'updated@test.com',
@@ -107,7 +107,7 @@ class CompaniesTest extends \TestCase
             'id' => $company->id(),
         ]);
 
-        $this->delete('/api/accounts/' . $account->id() . '/companies/' . $company->id())
+        $this->delete('/api/accounts/' . $account->id() . '/companies/' . $company->id(), [], $this->setJWTHeaders())
             ->assertNoContent();
 
         $this->missingFromDatabase(Company::TABLE, [

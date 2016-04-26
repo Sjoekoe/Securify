@@ -14,7 +14,7 @@ class AccountsTest extends \TestCase
     {
         $account = $this->createAccount();
 
-        $this->get('/api/accounts')
+        $this->get('/api/accounts', $this->setJWTHeaders())
             ->seeJsonEquals([
                 'data' => [
                     $this->includedAccount($account)
@@ -41,7 +41,7 @@ class AccountsTest extends \TestCase
             'name' => 'Test Account',
             'vat' => '456789',
             'website' => 'www.test.com',
-        ])->seeJsonEquals([
+        ], $this->setJWTHeaders())->seeJsonEquals([
             'data' => [
                 'id' => 1,
                 'name' => 'Test Account',
@@ -58,7 +58,7 @@ class AccountsTest extends \TestCase
     {
         $account = $this->createAccount();
 
-        $this->get('/api/accounts/' . $account->id())
+        $this->get('/api/accounts/' . $account->id(), $this->setJWTHeaders())
             ->seeJsonEquals([
                 'data' => $this->includedAccount($account),
             ]);
@@ -72,7 +72,7 @@ class AccountsTest extends \TestCase
         $this->put('/api/accounts/' . $account->id(), [
             'name' => 'Updated account',
             'website' => 'www.update.com',
-        ])->seeJsonEquals([
+        ], $this->setJWTHeaders())->seeJsonEquals([
             'data' => $this->includedAccount($account, [
                 'name' => 'Updated account',
                 'website' => 'www.update.com',
@@ -89,7 +89,7 @@ class AccountsTest extends \TestCase
             'id' => $account->id(),
         ]);
 
-        $this->delete('/api/accounts/' . $account->id())
+        $this->delete('/api/accounts/' . $account->id(), [], $this->setJWTHeaders())
             ->assertNoContent();
 
         $this->missingFromDatabase(Account::TABLE, [

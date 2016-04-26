@@ -1,5 +1,6 @@
 var Vue = require('vue');
 var moment = require('moment');
+var apiToken = window.securify.auth ? window.securify.auth.jwt : null;
 
 module.exports = Vue.extend({
     template: '#visits-table',
@@ -26,7 +27,7 @@ module.exports = Vue.extend({
             this.success = true;
 
             $.ajax({
-                url: '/api/accounts/' + window.securify.auth.account.id + '/visits/' + visitor.id,
+                url: '/api/accounts/' + window.securify.auth.account.id + '/visits/' + visitor.id + '?token=' + apiToken,
                 type: 'post',
                 data: {_method: 'delete'},
             });
@@ -45,7 +46,7 @@ module.exports = Vue.extend({
             var vm = this;
 
             $.ajax({
-                url: '/api/accounts/' + window.securify.auth.account.id + '/visits/' + visitor.id,
+                url: '/api/accounts/' + window.securify.auth.account.id + '/visits/' + visitor.id + '?token=' + apiToken,
                 method: 'put',
                 data: data,
                 success: function(visitor) {
@@ -65,7 +66,7 @@ module.exports = Vue.extend({
             var vm = this;
 
             $.ajax({
-                url: '/api/accounts/' + window.securify.auth.account.id + '/visits/' + visitor.id,
+                url: '/api/accounts/' + window.securify.auth.account.id + '/visits/' + visitor.id + '?token=' + apiToken,
                 method: 'put',
                 data: data,
                 success: function(visitor) {
@@ -83,7 +84,7 @@ module.exports = Vue.extend({
         },
 
         fetchAllRecords: function() {
-            $.getJSON('/api/accounts/' + window.securify.auth.account.id + '/visits', function (visits) {
+            $.getJSON('/api/accounts/' + window.securify.auth.account.id + '/visits?token=' + apiToken, function (visits) {
                 this.visits = visits.data;
                 this.fetching = false;
             }.bind(this));

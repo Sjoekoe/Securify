@@ -17,7 +17,7 @@ $api->version('v1', function(Router $api) {
             $api->delete('/{team}', ['as' => 'users.teams.delete', 'uses' => 'TeamController@delete']);
         });
 
-        $api->group(['namespace' => 'Accounts\\', 'prefix' => 'accounts'], function (Router $api) {
+        $api->group(['middleware' => 'api.auth', 'namespace' => 'Accounts\\', 'prefix' => 'accounts'], function (Router $api) {
             $api->get('/', ['as' => 'accounts.index', 'uses' => 'AccountController@index']);
             $api->post('/', ['as' => 'accounts.store', 'uses' => 'AccountController@store']);
             $api->get('/{account}', ['as' => 'accounts.show', 'uses' => 'AccountController@show']);

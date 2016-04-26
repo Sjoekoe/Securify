@@ -1,4 +1,5 @@
 var Vue = require('vue');
+var apiToken = window.securify.auth ? window.securify.auth.jwt : null;
 
 module.exports = Vue.extend({
     template: '#create-employee',
@@ -34,7 +35,7 @@ module.exports = Vue.extend({
             }
 
             $.ajax({
-                url: '/api/accounts/' + window.securify.auth.account.id + '/employees',
+                url: '/api/accounts/' + window.securify.auth.account.id + '/employees?token=' + apiToken,
                 type: 'post',
                 data: data,
                 error: function(errors) {

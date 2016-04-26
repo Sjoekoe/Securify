@@ -17,7 +17,7 @@ class IncidentTest extends \TestCase
             'account_id' => $account->id(),
         ]);
 
-        $this->get('/api/accounts/' . $account->id() . '/incidents')
+        $this->get('/api/accounts/' . $account->id() . '/incidents', $this->setJWTHeaders())
             ->seeJsonEquals([
                 'data' => [
                     $this->includedIncident($incident),
@@ -44,7 +44,7 @@ class IncidentTest extends \TestCase
 
         $this->post('/api/accounts/' . $account->id() . '/incidents', [
             'type' => 1
-        ])
+        ], $this->setJWTHeaders())
             ->seeJsonEquals([
                 'data' => [
                     'id' => 1,
@@ -66,7 +66,7 @@ class IncidentTest extends \TestCase
             'account_id' => $account->id(),
         ]);
 
-        $this->get('/api/accounts/' . $account->id() . '/incidents/' . $incident->id())
+        $this->get('/api/accounts/' . $account->id() . '/incidents/' . $incident->id(), $this->setJWTHeaders())
             ->seeJsonEquals([
                 'data' => $this->includedIncident($incident),
             ]);
@@ -84,7 +84,7 @@ class IncidentTest extends \TestCase
 
         $this->put('/api/accounts/' . $account->id() . '/incidents/' . $incident->id(), [
             'ended_at' => $end->format('d-m-Y - H:i')
-        ])->seeJsonEquals([
+        ], $this->setJWTHeaders())->seeJsonEquals([
             'data' => $this->includedIncident($incident, [
                 'ended_at' => $end->second(0)->toIso8601String(),
             ]),
@@ -103,7 +103,7 @@ class IncidentTest extends \TestCase
             'id' => $incident->id(),
         ]);
 
-        $this->delete('/api/accounts/' . $account->id() . '/incidents/' . $incident->id())
+        $this->delete('/api/accounts/' . $account->id() . '/incidents/' . $incident->id(), [], $this->setJWTHeaders())
             ->assertNoContent();
 
         $this->missingFromDatabase(Incident::TABLE, [

@@ -16,7 +16,7 @@ class EmployeesTest extends \TestCase
             'account_id' => $account->id(),
         ]);
 
-        $this->get('/api/accounts/' . $account->id() . '/employees')
+        $this->get('/api/accounts/' . $account->id() . '/employees', $this->setJWTHeaders())
             ->seeJsonEquals([
                 'data' => [
                     $this->includedEmployee($employee),
@@ -42,7 +42,7 @@ class EmployeesTest extends \TestCase
         $this->post('/api/accounts/' . $account->id() . '/employees', [
             'name' => 'Test employee',
             'email' => 'test@employee.com',
-        ])->seeJsonEquals([
+        ], $this->setJWTHeaders())->seeJsonEquals([
             'data' => [
                 'id' => 1,
                 'name' => 'Test employee',
@@ -64,7 +64,7 @@ class EmployeesTest extends \TestCase
             'account_id' => $account->id(),
         ]);
 
-        $this->get('/api/accounts/' . $account->id() . '/employees/' . $employee->id())
+        $this->get('/api/accounts/' . $account->id() . '/employees/' . $employee->id(), $this->setJWTHeaders())
             ->seeJsonEquals([
                 'data' => $this->includedEmployee($employee),
             ]);
@@ -81,12 +81,13 @@ class EmployeesTest extends \TestCase
         $this->put('/api/accounts/' . $account->id() . '/employees/' . $employee->id(), [
             'name' => 'updated employee',
             'email' => 'updated@email.com',
-        ])->seeJsonEquals([
-            'data' => $this->includedEmployee($employee, [
-                'name' => 'updated employee',
-                'email' => 'updated@email.com',
-            ]),
-        ]);
+        ], $this->setJWTHeaders())
+            ->seeJsonEquals([
+                'data' => $this->includedEmployee($employee, [
+                    'name' => 'updated employee',
+                    'email' => 'updated@email.com',
+                ]),
+            ]);
     }
 
     /** @test */
@@ -101,7 +102,7 @@ class EmployeesTest extends \TestCase
             'id' => $employee->id(),
         ]);
 
-        $this->delete('/api/accounts/' . $account->id() . '/employees/' . $employee->id())
+        $this->delete('/api/accounts/' . $account->id() . '/employees/' . $employee->id(), [], $this->setJWTHeaders())
             ->assertNoContent();
 
         $this->missingFromDatabase(Employee::TABLE, [

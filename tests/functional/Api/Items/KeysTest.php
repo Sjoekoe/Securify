@@ -16,7 +16,7 @@ class KeysTest extends \TestCase
             'account_id' => $account->id(),
         ]);
 
-        $this->get('/api/accounts/' . $account->id() . '/keys')
+        $this->get('/api/accounts/' . $account->id() . '/keys', $this->setJWTHeaders())
             ->seeJsonEquals([
                 'data' => [
                     $this->includedKey($key),
@@ -45,7 +45,7 @@ class KeysTest extends \TestCase
             'key_code' => 'ED-45',
             'number' => 15,
             'description' => 'Lorem ipsum',
-        ])->seeJsonEquals([
+        ], $this->setJWTHeaders())->seeJsonEquals([
             'data' => [
                 'id' => 1,
                 'name' => 'Test Key',
@@ -67,7 +67,7 @@ class KeysTest extends \TestCase
             'account_id' => $account->id(),
         ]);
 
-        $this->get('/api/accounts/' . $account->id() . '/keys/' . $key->id())
+        $this->get('/api/accounts/' . $account->id() . '/keys/' . $key->id(), $this->setJWTHeaders())
             ->seeJsonEquals([
                 'data' => $this->includedKey($key),
             ]);
@@ -85,7 +85,7 @@ class KeysTest extends \TestCase
             'name' => 'updated key',
             'number' => 20,
             'key_code' => '345',
-        ])->seeJsonEquals([
+        ], $this->setJWTHeaders())->seeJsonEquals([
             'data' => $this->includedKey($key, [
                 'number' => 20,
                 'name' => 'updated key',
@@ -106,7 +106,7 @@ class KeysTest extends \TestCase
             'id' => $key->id(),
         ]);
 
-        $this->delete('/api/accounts/' . $account->id() . '/keys/' . $key->id())
+        $this->delete('/api/accounts/' . $account->id() . '/keys/' . $key->id(), [], $this->setJWTHeaders())
             ->assertNoContent();
 
         $this->missingFromDatabase(Key::TABLE, [

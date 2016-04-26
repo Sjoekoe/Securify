@@ -1,5 +1,6 @@
 var Vue = require('vue');
 var accountId = window.securify.auth.account ? window.securify.auth.account.id : null;
+var apiToken = window.securify.auth ? window.securify.auth.jwt : null;
 
 module.exports = Vue.extend({
     template: '#create-key',
@@ -42,7 +43,7 @@ module.exports = Vue.extend({
             var vm = this;
 
             $.ajax({
-                url: '/api/accounts/' + accountId + '/keys',
+                url: '/api/accounts/' + accountId + '/keys?token=' + apiToken,
                 type: 'post',
                 data: data,
                 error: function (errors) {

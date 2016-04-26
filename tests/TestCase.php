@@ -3,6 +3,8 @@
 use App\Core\Factories\BuildModels;
 use App\Core\Factories\ModelFactory;
 use App\Helpers\CreatesModels;
+use App\JWT\TokenGenerator;
+use App\Users\UserRepository;
 use Illuminate\Http\Response;
 
 class TestCase extends Illuminate\Foundation\Testing\TestCase
@@ -36,6 +38,20 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         parent::setUp();
         $this->artisan('migrate:reset');
         $this->artisan('migrate');
+    }
+
+    /**
+     * @param int|null $userId
+     * @return array
+     */
+    public function setJWTHeaders($userId = null)
+    {
+        return ['Authorization' => 'Bearer ' . $this->getJWTToken($userId)];
+    }
+
+    private function getJWTToken($userId)
+    {
+        return $this->app[TokenGenerator::class]->byUser($this->createUser());
     }
 
     public function assertNoContent()

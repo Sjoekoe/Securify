@@ -14,7 +14,7 @@ class VisitsTest extends \TestCase
         $account = $this->createAccount();
         $visit = $this->createVisit($account);
 
-        $this->get('/api/accounts/' . $account->id() . '/visits')
+        $this->get('/api/accounts/' . $account->id() . '/visits', $this->setJWTHeaders())
             ->seeJsonEquals([
                 'data' => [
                     $this->includedVisit($visit),
@@ -38,7 +38,7 @@ class VisitsTest extends \TestCase
         $account = $this->createAccount();
         $visit = $this->createVisit($account);
 
-        $this->get('/api/accounts/' . $account->id() . '/visits/' . $visit->id())
+        $this->get('/api/accounts/' . $account->id() . '/visits/' . $visit->id(), $this->setJWTHeaders())
             ->seeJsonEquals([
                 'data' => $this->includedVisit($visit),
             ]);
@@ -54,7 +54,7 @@ class VisitsTest extends \TestCase
             'id' => $visit->id(),
         ]);
 
-        $this->delete('/api/accounts/' . $account->id() . '/visits/' . $visit->id())
+        $this->delete('/api/accounts/' . $account->id() . '/visits/' . $visit->id(), [], $this->setJWTHeaders())
             ->assertNoContent();
 
         $this->missingFromDatabase(Visit::TABLE, [

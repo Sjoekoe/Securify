@@ -20,7 +20,7 @@ class VisitorsTest extends \TestCase
             'company_id' => $company->id(),
         ]);
 
-        $this->get('/api/accounts/' . $account->id() . '/visitors')
+        $this->get('/api/accounts/' . $account->id() . '/visitors', $this->setJWTHeaders())
             ->seeJsonEquals([
                 'data' => [
                     $this->includedVisitor($visitor),
@@ -49,7 +49,7 @@ class VisitorsTest extends \TestCase
         $this->post('/api/accounts/' . $account->id() . '/visitors', [
             'name' => 'post visitor',
             'company_id' => $company->id(),
-        ])->seeJsonEquals([
+        ], $this->setJWTHeaders())->seeJsonEquals([
             'data' => [
                 'id' => 1,
                 'name' => 'post visitor',
@@ -75,7 +75,7 @@ class VisitorsTest extends \TestCase
             'company_id' => $company->id(),
         ]);
 
-        $this->get('/api/accounts/' . $account->id() . '/visitors/' . $visitor->id())
+        $this->get('/api/accounts/' . $account->id() . '/visitors/' . $visitor->id(), $this->setJWTHeaders())
             ->seeJsonEquals([
                 'data' => $this->includedVisitor($visitor),
             ]);
@@ -95,7 +95,7 @@ class VisitorsTest extends \TestCase
 
         $this->put('/api/accounts/' . $account->id() . '/visitors/' . $visitor->id(), [
             'name' => 'updated name',
-        ])->seeJsonEquals([
+        ], $this->setJWTHeaders())->seeJsonEquals([
             'data' => $this->includedVisitor($visitor, [
                 'name' => 'updated name',
             ])
@@ -118,7 +118,7 @@ class VisitorsTest extends \TestCase
             'id' => $visitor->id(),
         ]);
 
-        $this->delete('/api/accounts/' . $account->id() . '/visitors/' . $visitor->id())
+        $this->delete('/api/accounts/' . $account->id() . '/visitors/' . $visitor->id(), [], $this->setJWTHeaders())
             ->assertNoContent();
 
         $this->missingFromDatabase(Visitor::TABLE, [

@@ -1,6 +1,7 @@
 var Vue = require('vue');
 var accountId = window.securify.auth.account ? window.securify.auth.account.id : null;
 var keyId = window.securify.key ? window.securify.key : null;
+var apiToken = window.securify.auth ? window.securify.auth.jwt : null;
 
 module.exports = Vue.extend({
     template: '#update-key',
@@ -23,7 +24,7 @@ module.exports = Vue.extend({
     },
 
     ready: function() {
-        $.getJSON('/api/accounts/' + accountId + '/keys/' + keyId, function (key) {
+        $.getJSON('/api/accounts/' + accountId + '/keys/' + keyId + '?token=' + apiToken, function (key) {
             this.name = key.data.name;
             this.number = key.data.number;
             this.key_code = key.data.key_code;
@@ -50,7 +51,7 @@ module.exports = Vue.extend({
             var vm = this;
 
             $.ajax({
-                url: '/api/accounts/' + accountId + '/keys/' + keyId,
+                url: '/api/accounts/' + accountId + '/keys/' + keyId + '?token=' + apiToken,
                 type: 'put',
                 data: data,
                 error: function (errors) {

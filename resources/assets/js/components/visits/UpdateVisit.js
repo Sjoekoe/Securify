@@ -1,6 +1,7 @@
 var Vue = require('vue');
 var accountID = window.securify.auth.account ? window.securify.auth.account.id : null;
 var visit = window.securify.visit;
+var apiToken = window.securify.auth ? window.securify.auth.jwt : null;
 
 module.exports = Vue.extend({
     template: '#update-visit',
@@ -30,7 +31,7 @@ module.exports = Vue.extend({
     },
 
     ready: function() {
-        $.getJSON('/api/accounts/' + accountID + '/visits/' + visit, function (visit) {
+        $.getJSON('/api/accounts/' + accountID + '/visits/' + visit + '?token=' + apiToken, function (visit) {
             this.visitor = visit.data.visitorRelation.data.id;
             this.visitor_name = visit.data.visitorRelation.data.name;
             this.company = visit.data.visitorRelation.data.companyRelation.data.id;
@@ -40,15 +41,15 @@ module.exports = Vue.extend({
             this.expected_departure = visit.data.expected_departure;
         }.bind(this));
 
-        $.getJSON('/api/accounts/' + accountID + '/visitors', function(visitors) {
+        $.getJSON('/api/accounts/' + accountID + '/visitors' + '?token=' + apiToken, function(visitors) {
             this.visitors = visitors.data;
         }.bind(this));
 
-        $.getJSON('/api/accounts/' + accountID + '/employees', function(employees) {
+        $.getJSON('/api/accounts/' + accountID + '/employees' + '?token=' + apiToken, function(employees) {
             this.employees = employees.data;
         }.bind(this));
 
-        $.getJSON('/api/accounts/' + accountID + '/companies', function(companies) {
+        $.getJSON('/api/accounts/' + accountID + '/companies' + '?token=' + apiToken, function(companies) {
             this.companies = companies.data;
         }.bind(this));
 
@@ -60,7 +61,7 @@ module.exports = Vue.extend({
             var vm = this;
 
             if (parseInt(vm.visitor) !== 0) {
-                $.getJSON('/api/accounts/' + accountID + '/visitors/' + vm.visitor, function(visitor) {
+                $.getJSON('/api/accounts/' + accountID + '/visitors/' + vm.visitor + '?token=' + apiToken, function(visitor) {
                     vm.visitor_name = visitor.data.name;
                     vm.selected_visitor = true;
                     vm.company = visitor.data.companyRelation.data.id;
@@ -76,7 +77,7 @@ module.exports = Vue.extend({
             var vm = this;
 
             if (parseInt(vm.company) !== 0) {
-                $.getJSON('/api/accounts/' + accountID + '/companies/' + vm.company, function(company) {
+                $.getJSON('/api/accounts/' + accountID + '/companies/' + vm.company + '?token=' + apiToken, function(company) {
                     vm.company_name = company.data.name;
                     vm.selected_company = true;
                 }.bind(vm));
@@ -107,7 +108,7 @@ module.exports = Vue.extend({
             }
 
             $.ajax({
-                url:'/api/accounts/' + accountID + '/visitations/' + visit,
+                url:'/api/accounts/' + accountID + '/visitations/' + visit + '?token=' + apiToken,
                 type: 'put',
                 data: data,
                 error: function(errors) {
