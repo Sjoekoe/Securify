@@ -11,6 +11,8 @@ use App\Incidents\EloquentIncident;
 use App\Incidents\Incident;
 use App\Keys\EloquentKey;
 use App\Keys\Key;
+use App\Locations\Buildings\Building;
+use App\Locations\Buildings\EloquentBuilding;
 use App\Teams\EloquentTeam;
 use App\Teams\Team;
 use App\Users\EloquentUser;
@@ -33,6 +35,7 @@ class EloquentModelFactory
      */
     private $models = [
         Account::class => EloquentAccount::class,
+        Building::class => EloquentBuilding::class,
         Company::class => EloquentCompany::class,
         Employee::class => EloquentEmployee::class,
         Incident::class => EloquentIncident::class,

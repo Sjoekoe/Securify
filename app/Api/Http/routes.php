@@ -75,6 +75,16 @@ $api->version('v1', function(Router $api) {
                 $api->put('/{incident}', ['as' => 'accounts.incidents.update', 'uses' => 'IncidentController@update']);
                 $api->delete('/{incident}', ['as' => 'accounts.incidents.delete', 'uses' => 'IncidentController@delete']);
             });
+
+            $api->group(['namespace' => 'Locations\\'], function (Router $api) {
+                $api->group(['namespace' => 'Buildings\\', 'prefix' => '{account}/buildings'], function (Router $api) {
+                    $api->get('/', ['as' => 'accounts.buildings.index', 'uses' => 'BuildingController@index']);
+                    $api->post('/', ['as' => 'accounts.buildings.store', 'uses' => 'BuildingController@store']);
+                    $api->get('/{building}', ['as' => 'accounts.buildings.show', 'uses' => 'BuildingController@show']);
+                    $api->put('/{building}', ['as' => 'accounts.buildings.update', 'uses' => 'BuildingController@update']);
+                    $api->delete('/{building}', ['as' => 'accounts.buildings.delete', 'uses' => 'BuildingController@delete']);
+                });
+            });
         });
     });
 });

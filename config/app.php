@@ -169,6 +169,7 @@ return [
         App\Incidents\IncidentServiceProvider::class,
         App\JWT\JWTServiceProvider::class,
         App\Keys\KeyServiceProvider::class,
+        App\Locations\LocationsServiceProvider::class,
         App\Users\AuthServiceProvider::class,
         App\Teams\TeamServiceProvider::class,
         App\Users\UserServiceProvider::class,

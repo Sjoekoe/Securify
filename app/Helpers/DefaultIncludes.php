@@ -6,6 +6,7 @@ use App\Companies\Company;
 use App\Employees\Employee;
 use App\Incidents\Incident;
 use App\Keys\Key;
+use App\Locations\Buildings\Building;
 use App\Teams\Team;
 use App\Users\User;
 use App\Visitors\Visitor;
@@ -183,6 +184,22 @@ trait DefaultIncludes
             'accountRelation' => [
                 'data' => $this->includedAccount($incident->account()),
             ]
+        ], $attributes);
+    }
+
+    /**
+     * @param \App\Locations\Buildings\Building $building
+     * @param array $attributes
+     * @return array
+     */
+    public function includedBuilding(Building $building, $attributes = [])
+    {
+        return array_merge([
+            'id' => $building->id(),
+            'name' => $building->name(),
+            'accountRelation' => [
+                'data' => $this->includedAccount($building->account()),
+            ],
         ], $attributes);
     }
 }

@@ -6,6 +6,7 @@ use App\Companies\CompanyRouteBinding;
 use App\Employees\EmployeeRouteBinding;
 use App\Incidents\IncidentRouteBinding;
 use App\Keys\KeyRouteBinding;
+use App\Locations\Buildings\BuildingRouteBinding;
 use App\Teams\TeamRouteBinding;
 use App\Visitors\VisitorRouteBinding;
 use App\Visits\VisitRouteBinding;
@@ -35,6 +36,7 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot($router);
 
         $router->bind('account', AccountRouteBinding::class);
+        $router->bind('building', BuildingRouteBinding::class);
         $router->bind('company', CompanyRouteBinding::class);
         $router->bind('employee', EmployeeRouteBinding::class);
         $router->bind('incident', IncidentRouteBinding::class);

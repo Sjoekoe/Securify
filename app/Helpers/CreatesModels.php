@@ -6,6 +6,7 @@ use App\Companies\Company;
 use App\Employees\Employee;
 use App\Incidents\Incident;
 use App\Keys\Key;
+use App\Locations\Buildings\Building;
 use App\Teams\Team;
 use App\Users\User;
 use App\Visitors\Visitor;
@@ -150,6 +151,17 @@ trait CreatesModels
         return $this->modelFactory->create(Incident::class, array_merge([
             'type' => 1,
             'ended_at' => $now,
+        ], $attributes));
+    }
+
+    /**
+     * @param array $attributes
+     * @return \App\Locations\Buildings\Building
+     */
+    public function createBuilding(array $attributes = [])
+    {
+        return $this->modelFactory->create(Building::class, array_merge([
+            'name' => 'Foo building',
         ], $attributes));
     }
 }
