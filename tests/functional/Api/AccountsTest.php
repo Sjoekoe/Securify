@@ -47,6 +47,8 @@ class AccountsTest extends \TestCase
                 'name' => 'Test Account',
                 'vat' => '456789',
                 'website' => 'www.test.com',
+                'date_format' => 'd-m-y',
+                'time_format' => 'HH:MM',
                 'created_at' => $now->toIso8601String(),
                 'updated_at' => $now->toIso8601String(),
             ]

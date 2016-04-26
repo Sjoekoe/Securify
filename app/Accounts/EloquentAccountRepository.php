@@ -20,6 +20,8 @@ class EloquentAccountRepository implements AccountRepository
     public function create(array $values)
     {
         $account = new EloquentAccount($values);
+        $account->date_format = 'd-m-y';
+        $account->time_format = 'HH:MM';
         $account->save();
 
         return $account;

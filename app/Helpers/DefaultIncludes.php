@@ -138,6 +138,7 @@ trait DefaultIncludes
             'expected_departure' => $visit->expectedDeparture()->toIso8601String(),
             'arrival' => $visit->arrival()->toIso8601String(),
             'departure' => $visit->departure()->toIso8601String(),
+            'is_completed' => true,
             'accountRelation' => [
                 'data' => $this->includedAccount($visit->account()),
             ],
