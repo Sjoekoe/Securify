@@ -15,6 +15,8 @@ use App\Locations\Buildings\Building;
 use App\Locations\Buildings\EloquentBuilding;
 use App\Locations\Doors\Door;
 use App\Locations\Doors\EloquentDoor;
+use App\Patrols\EloquentPatrol;
+use App\Patrols\Patrol;
 use App\Teams\EloquentTeam;
 use App\Teams\Team;
 use App\Users\EloquentUser;
@@ -43,6 +45,7 @@ class EloquentModelFactory
         Employee::class => EloquentEmployee::class,
         Incident::class => EloquentIncident::class,
         Key::class => EloquentKey::class,
+        Patrol::class => EloquentPatrol::class,
         Team::class => EloquentTeam::class,
         User::class => EloquentUser::class,
         Visit::class => EloquentVisit::class,

@@ -8,6 +8,7 @@ use App\Incidents\Incident;
 use App\Keys\Key;
 use App\Locations\Buildings\Building;
 use App\Locations\Doors\Door;
+use App\Patrols\Patrol;
 use App\Teams\Team;
 use App\Users\User;
 use App\Visitors\Visitor;
@@ -224,6 +225,23 @@ trait DefaultIncludes
             ],
             'keyRelation' => [
                 'data' => $this->includedKey($door->key()),
+            ],
+        ], $attributes);
+    }
+
+    /**
+     * @param \App\Patrols\Patrol $patrol
+     * @param array $attributes
+     * @return array
+     */
+    public function includedPatrol(Patrol $patrol, $attributes = [])
+    {
+        return array_merge([
+            'id' => $patrol->id(),
+            'name' => $patrol->name(),
+            'description' => $patrol->description(),
+            'accountRelation' => [
+                'data' => $this->includedAccount($patrol->account()),
             ],
         ], $attributes);
     }

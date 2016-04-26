@@ -93,6 +93,14 @@ $api->version('v1', function(Router $api) {
                     $api->delete('/{door}', ['as' => 'account.doors.delete', 'uses' => 'DoorController@delete']);
                 });
             });
+
+            $api->group(['namespace' => 'Patrols\\', 'prefix' => '{account}/patrols'], function (Router $api) {
+                $api->get('/', ['as' => 'account.patrols.index', 'uses' => 'PatrolController@index']);
+                $api->post('/', ['as' => 'account.patrols.store', 'uses' => 'PatrolController@store']);
+                $api->get('/{patrol}', ['as' => 'account.patrols.show', 'uses' => 'PatrolController@show']);
+                $api->put('/{patrol}', ['as' => 'account.patrols.update', 'uses' => 'PatrolController@update']);
+                $api->delete('/{patrol}', ['as' => 'account.patrols.delete', 'uses' => 'PatrolController@delete']);
+            });
         });
     });
 });

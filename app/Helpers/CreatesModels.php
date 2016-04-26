@@ -8,6 +8,7 @@ use App\Incidents\Incident;
 use App\Keys\Key;
 use App\Locations\Buildings\Building;
 use App\Locations\Doors\Door;
+use App\Patrols\Patrol;
 use App\Teams\Team;
 use App\Users\User;
 use App\Visitors\Visitor;
@@ -174,6 +175,18 @@ trait CreatesModels
     {
         return $this->modelFactory->create(Door::class, array_merge([
             'name' => 'Test Door',
+            'description' => 'Lorem ipsum dolores est',
+        ], $attributes));
+    }
+
+    /**
+     * @param array $attributes
+     * @return \App\Patrols\Patrol
+     */
+    public function createPatrol(array $attributes = [])
+    {
+        return $this->modelFactory->create(Patrol::class, array_merge([
+            'name' => 'Test Patrol',
             'description' => 'Lorem ipsum dolores est',
         ], $attributes));
     }
