@@ -10,6 +10,7 @@ use App\Locations\Buildings\Building;
 use App\Locations\Doors\Door;
 use App\Patrols\Checkpoints\Checkpoint;
 use App\Patrols\Patrol;
+use App\Tasks\Task;
 use App\Teams\Team;
 use App\Users\User;
 use App\Visitors\Visitor;
@@ -267,6 +268,26 @@ trait DefaultIncludes
             'doorRelation' => [
                 'data' => $this->includedDoor($checkpoint->door()),
             ]
+        ], $attributes);
+    }
+
+    /**
+     * @param \App\Tasks\Task $task
+     * @param array $attributes
+     * @return array
+     */
+    public function includedTask(Task $task, $attributes = [])
+    {
+        return array_merge([
+            'id' => $task->id(),
+            'name' => $task->name(),
+            'description' => $task->description(),
+            'expected_start' => $task->expectedStart()->toIso8601String(),
+            'expected_end' => $task->expectedEnd()->toIso8601String(),
+            'finished' => $task->finished() ? $task->finished()->toIso8601String() : null,
+            'accountRelation' => [
+                'data' => $this->includedAccount($task->account()),
+            ],
         ], $attributes);
     }
 }

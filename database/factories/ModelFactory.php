@@ -9,6 +9,7 @@ use App\Locations\Buildings\EloquentBuilding;
 use App\Locations\Doors\EloquentDoor;
 use App\Patrols\Checkpoints\EloquentCheckpoint;
 use App\Patrols\EloquentPatrol;
+use App\Tasks\EloquentTask;
 use App\Teams\EloquentTeam;
 use App\Users\EloquentUser;
 use App\Visitors\EloquentVisitor;
@@ -52,5 +53,8 @@ $factory->define(EloquentPatrol::class, function (Generator $faker) {
     return [];
 });
 $factory->define(EloquentCheckpoint::class, function (Generator $faker) {
+    return [];
+});
+$factory->define(EloquentTask::class, function (Generator $faker) {
     return [];
 });

@@ -109,6 +109,14 @@ $api->version('v1', function(Router $api) {
                     $api->delete('/{checkpoint}', ['as' => 'account.patrols.checkpoints.delete', 'uses' => 'CheckpointController@delete']);
                 });
             });
+
+            $api->group(['namespace' => 'Tasks\\', 'prefix' => '{account}/tasks'], function (Router $api) {
+                $api->get('/', ['as' => 'accounts.tasks.index', 'uses' => 'TaskController@index']);
+                $api->post('/', ['as' => 'accounts.tasks.store', 'uses' =>'TaskController@store']);
+                $api->get('/{task}', ['as' => 'accounts.tasks.show', 'uses' => 'TaskController@show']);
+                $api->put('/{task}', ['as' => 'accounts.tasks.update', 'uses' => 'TaskController@update']);
+                $api->delete('/{task}', ['as' => 'accounts.tasks.delete', 'uses' => 'TaskController@delete']);
+            });
         });
     });
 });

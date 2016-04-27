@@ -159,6 +159,7 @@ return [
         /**
          * Own Service Providers
          */
+        App\Tasks\TaskServiceProvider::class,
         App\Accounts\AccountServiceProvider::class,
         App\Auth\AuthServiceProvider::class,
         App\Companies\CompanyServiceProvider::class,

@@ -19,6 +19,8 @@ use App\Patrols\Checkpoints\Checkpoint;
 use App\Patrols\Checkpoints\EloquentCheckpoint;
 use App\Patrols\EloquentPatrol;
 use App\Patrols\Patrol;
+use App\Tasks\EloquentTask;
+use App\Tasks\Task;
 use App\Teams\EloquentTeam;
 use App\Teams\Team;
 use App\Users\EloquentUser;
@@ -49,6 +51,7 @@ class EloquentModelFactory
         Incident::class => EloquentIncident::class,
         Key::class => EloquentKey::class,
         Patrol::class => EloquentPatrol::class,
+        Task::class => EloquentTask::class,
         Team::class => EloquentTeam::class,
         User::class => EloquentUser::class,
         Visit::class => EloquentVisit::class,

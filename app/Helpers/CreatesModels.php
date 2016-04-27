@@ -10,6 +10,7 @@ use App\Locations\Buildings\Building;
 use App\Locations\Doors\Door;
 use App\Patrols\Checkpoints\Checkpoint;
 use App\Patrols\Patrol;
+use App\Tasks\Task;
 use App\Teams\Team;
 use App\Users\User;
 use App\Visitors\Visitor;
@@ -201,6 +202,23 @@ trait CreatesModels
         return $this->modelFactory->create(Checkpoint::class, array_merge([
             'name' => 'Test checkpoint',
             'description' => 'Test description',
+        ], $attributes));
+    }
+
+    /**
+     * @param array $attributes
+     * @return \App\Tasks\Task
+     */
+    public function createTask(array $attributes = [])
+    {
+        $now = Carbon::now();
+        
+        return $this->modelFactory->create(Task::class, array_merge([
+            'name' => 'Foo task',
+            'description' => 'Lorem ipsum dolores est',
+            'expected_start' => $now,
+            'expected_end' => $now,
+            'finished' => $now,
         ], $attributes));
     }
 }
