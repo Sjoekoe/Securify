@@ -117,6 +117,14 @@ $api->version('v1', function(Router $api) {
                 $api->put('/{task}', ['as' => 'accounts.tasks.update', 'uses' => 'TaskController@update']);
                 $api->delete('/{task}', ['as' => 'accounts.tasks.delete', 'uses' => 'TaskController@delete']);
             });
+
+            $api->group(['namespace' => 'Items\\', 'prefix' => '{account}/items'], function (Router $api) {
+                $api->get('/', ['as' => 'accounts.items.index', 'uses' => 'ItemController@index']);
+                $api->post('/', ['as' => 'accounts.items.store', 'uses' => 'ItemController@store']);
+                $api->get('/{item}', ['as' => 'accounts.items.show', 'uses' => 'ItemController@show']);
+                $api->put('/{item}', ['as' => 'accounts.items.update', 'uses' => 'ItemController@update']);
+                $api->delete('/{item}', ['as' => 'accounts.items.delete', 'uses' => 'ItemController@delete']);
+            });
         });
     });
 });

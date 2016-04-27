@@ -169,6 +169,7 @@ return [
         App\Employees\EmployeeServiceProvider::class,
         App\Http\HttpServiceProvider::class,
         App\Incidents\IncidentServiceProvider::class,
+        App\Items\ItemServiceProvider::class,
         App\JWT\JWTServiceProvider::class,
         App\Keys\KeyServiceProvider::class,
         App\Locations\LocationsServiceProvider::class,

@@ -5,6 +5,7 @@ use App\Accounts\Account;
 use App\Companies\Company;
 use App\Employees\Employee;
 use App\Incidents\Incident;
+use App\Items\Item;
 use App\Keys\Key;
 use App\Locations\Buildings\Building;
 use App\Locations\Doors\Door;
@@ -287,6 +288,24 @@ trait DefaultIncludes
             'finished' => $task->finished() ? $task->finished()->toIso8601String() : null,
             'accountRelation' => [
                 'data' => $this->includedAccount($task->account()),
+            ],
+        ], $attributes);
+    }
+
+    /**
+     * @param \App\Items\Item $item
+     * @param array $attributes
+     * @return array
+     */
+    public function includedItem(Item $item, $attributes = [])
+    {
+        return array_merge([
+            'id' => $item->id(),
+            'name' =>$item->name(),
+            'description' => $item->description(),
+            'code' => $item->code(),
+            'accountRelation' => [
+                'data' => $this->includedAccount($item->account()),
             ],
         ], $attributes);
     }

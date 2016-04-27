@@ -5,6 +5,7 @@ use App\Accounts\Account;
 use App\Companies\Company;
 use App\Employees\Employee;
 use App\Incidents\Incident;
+use App\Items\Item;
 use App\Keys\Key;
 use App\Locations\Buildings\Building;
 use App\Locations\Doors\Door;
@@ -212,13 +213,26 @@ trait CreatesModels
     public function createTask(array $attributes = [])
     {
         $now = Carbon::now();
-        
+
         return $this->modelFactory->create(Task::class, array_merge([
             'name' => 'Foo task',
             'description' => 'Lorem ipsum dolores est',
             'expected_start' => $now,
             'expected_end' => $now,
             'finished' => $now,
+        ], $attributes));
+    }
+
+    /**
+     * @param array $attributes
+     * @return \App\Items\Item
+     */
+    public function createItem(array $attributes = [])
+    {
+        return $this->modelFactory->create(Item::class, array_merge([
+            'name' => 'Foo Item',
+            'description' => 'Lorem ipsum dolores est',
+            'code' => 'ARF-4',
         ], $attributes));
     }
 }

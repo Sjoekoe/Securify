@@ -9,6 +9,8 @@ use App\Employees\EloquentEmployee;
 use App\Employees\Employee;
 use App\Incidents\EloquentIncident;
 use App\Incidents\Incident;
+use App\Items\EloquentItem;
+use App\Items\Item;
 use App\Keys\EloquentKey;
 use App\Keys\Key;
 use App\Locations\Buildings\Building;
@@ -49,6 +51,7 @@ class EloquentModelFactory
         Door::class => EloquentDoor::class,
         Employee::class => EloquentEmployee::class,
         Incident::class => EloquentIncident::class,
+        Item::class => EloquentItem::class,
         Key::class => EloquentKey::class,
         Patrol::class => EloquentPatrol::class,
         Task::class => EloquentTask::class,
