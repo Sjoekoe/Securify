@@ -100,6 +100,14 @@ $api->version('v1', function(Router $api) {
                 $api->get('/{patrol}', ['as' => 'account.patrols.show', 'uses' => 'PatrolController@show']);
                 $api->put('/{patrol}', ['as' => 'account.patrols.update', 'uses' => 'PatrolController@update']);
                 $api->delete('/{patrol}', ['as' => 'account.patrols.delete', 'uses' => 'PatrolController@delete']);
+
+                $api->group(['namespace' => 'CheckPoints\\', 'prefix' => '{patrol}/checkpoints'], function (Router $api) {
+                    $api->get('/', ['as' => 'account.patrols.checkpoints.index', 'uses' => 'CheckpointController@index']);
+                    $api->post('/', ['as' => 'account.patrols.checkpoints.store', 'uses' => 'CheckpointController@store']);
+                    $api->get('/{checkpoint}', ['as' => 'account.patrols.checkpoints.show', 'uses' => 'CheckpointController@show']);
+                    $api->put('/{checkpoint}', ['as' => 'account.patrols.checkpoints.update', 'uses' => 'CheckpointController@update']);
+                    $api->delete('/{checkpoint}', ['as' => 'account.patrols.checkpoints.delete', 'uses' => 'CheckpointController@delete']);
+                });
             });
         });
     });

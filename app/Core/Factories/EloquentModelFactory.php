@@ -15,6 +15,8 @@ use App\Locations\Buildings\Building;
 use App\Locations\Buildings\EloquentBuilding;
 use App\Locations\Doors\Door;
 use App\Locations\Doors\EloquentDoor;
+use App\Patrols\Checkpoints\Checkpoint;
+use App\Patrols\Checkpoints\EloquentCheckpoint;
 use App\Patrols\EloquentPatrol;
 use App\Patrols\Patrol;
 use App\Teams\EloquentTeam;
@@ -40,6 +42,7 @@ class EloquentModelFactory
     private $models = [
         Account::class => EloquentAccount::class,
         Building::class => EloquentBuilding::class,
+        Checkpoint::class => EloquentCheckpoint::class,
         Company::class => EloquentCompany::class,
         Door::class => EloquentDoor::class,
         Employee::class => EloquentEmployee::class,

@@ -8,6 +8,7 @@ use App\Incidents\Incident;
 use App\Keys\Key;
 use App\Locations\Buildings\Building;
 use App\Locations\Doors\Door;
+use App\Patrols\Checkpoints\Checkpoint;
 use App\Patrols\Patrol;
 use App\Teams\Team;
 use App\Users\User;
@@ -243,6 +244,29 @@ trait DefaultIncludes
             'accountRelation' => [
                 'data' => $this->includedAccount($patrol->account()),
             ],
+        ], $attributes);
+    }
+
+    /**
+     * @param \App\Patrols\Checkpoints\Checkpoint $checkpoint
+     * @param array $attributes
+     * @return array
+     */
+    public function includedCheckpoint(Checkpoint $checkpoint, $attributes = [])
+    {
+        return array_merge([
+            'id' => $checkpoint->id(),
+            'name' => $checkpoint->name(),
+            'description' => $checkpoint->description(),
+            'accountRelation' => [
+                'data' => $this->includedAccount($checkpoint->account()),
+            ],
+            'patrolRelation' => [
+                'data' => $this->includedPatrol($checkpoint->patrol()),
+            ],
+            'doorRelation' => [
+                'data' => $this->includedDoor($checkpoint->door()),
+            ]
         ], $attributes);
     }
 }

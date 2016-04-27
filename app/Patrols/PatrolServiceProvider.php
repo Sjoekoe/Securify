@@ -1,6 +1,9 @@
 <?php
 namespace App\Patrols;
 
+use App\Patrols\Checkpoints\CheckpointRepository;
+use App\Patrols\Checkpoints\EloquentCheckpoint;
+use App\Patrols\Checkpoints\EloquentCheckpointRepository;
 use Illuminate\Support\ServiceProvider;
 
 class PatrolServiceProvider extends ServiceProvider
@@ -15,6 +18,10 @@ class PatrolServiceProvider extends ServiceProvider
         $this->app->singleton(PatrolRepository::class, function() {
             return new EloquentPatrolRepository(new EloquentPatrol());
         });
+        
+        $this->app->singleton(CheckpointRepository::class, function() {
+            return new EloquentCheckpointRepository(new EloquentCheckpoint());
+        });
     }
 
     /**
@@ -24,6 +31,7 @@ class PatrolServiceProvider extends ServiceProvider
     {
         return [
             PatrolRepository::class,
+            CheckpointRepository::class,
         ];
     }
 }

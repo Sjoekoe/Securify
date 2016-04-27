@@ -8,6 +8,7 @@ use App\Incidents\Incident;
 use App\Keys\Key;
 use App\Locations\Buildings\Building;
 use App\Locations\Doors\Door;
+use App\Patrols\Checkpoints\Checkpoint;
 use App\Patrols\Patrol;
 use App\Teams\Team;
 use App\Users\User;
@@ -188,6 +189,18 @@ trait CreatesModels
         return $this->modelFactory->create(Patrol::class, array_merge([
             'name' => 'Test Patrol',
             'description' => 'Lorem ipsum dolores est',
+        ], $attributes));
+    }
+
+    /**
+     * @param array $attributes
+     * @return \App\Patrols\Checkpoints\Checkpoint
+     */
+    public function createCheckpoint(array $attributes = [])
+    {
+        return $this->modelFactory->create(Checkpoint::class, array_merge([
+            'name' => 'Test checkpoint',
+            'description' => 'Test description',
         ], $attributes));
     }
 }
