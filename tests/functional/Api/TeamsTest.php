@@ -3,10 +3,11 @@ namespace functional\Api;
 
 use App\Helpers\DefaultIncludes;
 use App\Teams\Team;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class TeamsTest extends \TestCase
 {
-    use DefaultIncludes;
+    use DefaultIncludes, DatabaseTransactions;
 
     /** @test */
     function it_can_get_all_teams_for_a_user()

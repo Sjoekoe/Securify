@@ -3,10 +3,12 @@ namespace functional\Api\Locations;
 
 use App\Helpers\DefaultIncludes;
 use App\Locations\Doors\Door;
+use DB;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class DoorsTest extends \TestCase
 {
-    use DefaultIncludes;
+    use DefaultIncludes, DatabaseTransactions;
 
     /** @test */
     function it_can_get_all_doors_for_an_account()
@@ -60,7 +62,7 @@ class DoorsTest extends \TestCase
             'key_id' => $key->id(),
         ], $this->setJWTHeaders())->seeJsonEquals([
             'data' => [
-                'id' => 1,
+                'id' => DB::table(Door::TABLE)->first()->id,
                 'name' => 'Foo Door',
                 'description' => 'test description',
                 'keyRelation' => [

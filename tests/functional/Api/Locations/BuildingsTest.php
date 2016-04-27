@@ -3,10 +3,12 @@ namespace functional\Api\Locations;
 
 use App\Helpers\DefaultIncludes;
 use App\Locations\Buildings\Building;
+use DB;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class BuildingsTest extends \TestCase
 {
-    use DefaultIncludes;
+    use DefaultIncludes, DatabaseTransactions;
 
     /** @test */
     function it_can_get_all_buildings_for_an_account()
@@ -44,7 +46,7 @@ class BuildingsTest extends \TestCase
         ], $this->setJWTHeaders())
             ->seeJsonEquals([
                 'data' => [
-                    'id' => 1,
+                    'id' => DB::table(Building::TABLE)->first()->id,
                     'name' => 'Test Building',
                     'accountRelation' => [
                         'data' => $this->includedAccount($account),

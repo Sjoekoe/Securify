@@ -4,10 +4,12 @@ namespace functional\Api\Tasks;
 use App\Helpers\DefaultIncludes;
 use App\Tasks\Task;
 use Carbon\Carbon;
+use DB;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class TasksTest extends \TestCase
 {
-    use DefaultIncludes;
+    use DefaultIncludes, DatabaseTransactions;
 
     /** @test */
     function it_can_get_all_tasks_for_an_account()
@@ -50,7 +52,7 @@ class TasksTest extends \TestCase
         ], $this->setJWTHeaders())
             ->seeJsonEquals([
                 'data' => [
-                    'id' => 1,
+                    'id' => DB::table(Task::TABLE)->first()->id,
                     'name' => 'test task',
                     'description' => null,
                     'expected_start' => $start->second(0)->toIso8601String(),

@@ -4,10 +4,12 @@ namespace functional\Api;
 use App\Helpers\DefaultIncludes;
 use App\Users\User;
 use Carbon\Carbon;
+use DB;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class UsersTest extends \TestCase
 {
-    use DefaultIncludes;
+    use DefaultIncludes, DatabaseTransactions;
 
     /** @test */
     function it_can_get_all_users_paginated()
@@ -44,7 +46,7 @@ class UsersTest extends \TestCase
             'password_confirmation' => 'password',
         ])->seeJsonEquals([
             'data' => [
-                'id' => 1,
+                'id' => DB::table(User::TABLE)->first()->id,
                 'name' => 'John Doe',
                 'email' => 'john@doe.com',
                 'created_at' => $now->toIso8601String(),

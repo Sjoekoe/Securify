@@ -3,10 +3,12 @@ namespace functional\Api\Items;
 
 use App\Helpers\DefaultIncludes;
 use App\Keys\Key;
+use DB;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class KeysTest extends \TestCase
 {
-    use DefaultIncludes;
+    use DefaultIncludes, DatabaseTransactions;
 
     /** @test */
     function it_can_show_all_keys_for_an_account_paginated()
@@ -47,7 +49,7 @@ class KeysTest extends \TestCase
             'description' => 'Lorem ipsum',
         ], $this->setJWTHeaders())->seeJsonEquals([
             'data' => [
-                'id' => 1,
+                'id' => DB::table(Key::TABLE)->first()->id,
                 'name' => 'Test Key',
                 'key_code' => 'ED-45',
                 'number' => 15,

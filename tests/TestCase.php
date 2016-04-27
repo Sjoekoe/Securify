@@ -36,8 +36,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
     public function setup()
     {
         parent::setUp();
-        $this->artisan('migrate:reset');
-        $this->artisan('migrate');
+        //$this->artisan('migrate');
     }
 
     /**

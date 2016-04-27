@@ -3,10 +3,12 @@ namespace functional\Api\Patrols;
 
 use App\Helpers\DefaultIncludes;
 use App\Patrols\Patrol;
+use DB;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class PatrolTest extends \TestCase
 {
-    use DefaultIncludes;
+    use DefaultIncludes, DatabaseTransactions;
 
     /** @test */
     function it_can_get_all_patrols_for_an_account()
@@ -45,7 +47,7 @@ class PatrolTest extends \TestCase
         ], $this->setJWTHeaders())
             ->seeJsonEquals([
                 'data' => [
-                    'id' => 1,
+                    'id' => DB::table(Patrol::TABLE)->first()->id,
                     'name' => 'Test Patrol',
                     'description' => 'Foo description',
                     'accountRelation' => [

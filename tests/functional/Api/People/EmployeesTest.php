@@ -3,10 +3,12 @@ namespace functional\Api\People;
 
 use App\Employees\Employee;
 use App\Helpers\DefaultIncludes;
+use DB;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class EmployeesTest extends \TestCase
 {
-    use DefaultIncludes;
+    use DefaultIncludes, DatabaseTransactions;
 
     /** @test */
     function it_can_get_all_employees_for_an_account()
@@ -44,7 +46,7 @@ class EmployeesTest extends \TestCase
             'email' => 'test@employee.com',
         ], $this->setJWTHeaders())->seeJsonEquals([
             'data' => [
-                'id' => 1,
+                'id' => DB::table(Employee::TABLE)->first()->id,
                 'name' => 'Test employee',
                 'email' => 'test@employee.com',
                 'number' => null,

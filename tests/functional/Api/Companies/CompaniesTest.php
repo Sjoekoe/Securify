@@ -3,10 +3,12 @@ namespace functional\Api\Companies;
 
 use App\Companies\Company;
 use App\Helpers\DefaultIncludes;
+use DB;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class CompaniesTest extends \TestCase
 {
-    use DefaultIncludes;
+    use DefaultIncludes, DatabaseTransactions;
 
     /** @test */
     function it_can_get_all_companies_for_an_account()
@@ -47,7 +49,7 @@ class CompaniesTest extends \TestCase
             'vat' => '567890',
         ], $this->setJWTHeaders())->seeJsonEquals([
             'data' => [
-                'id' => 1,
+                'id' => DB::table(Company::TABLE)->first()->id,
                 'name' => 'Creating company',
                 'email' => 'info@company.com',
                 'website' => 'http://www.company.com',

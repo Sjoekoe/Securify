@@ -3,10 +3,11 @@ namespace functional\Api\People;
 
 use App\Helpers\DefaultIncludes;
 use App\Visits\Visit;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class VisitsTest extends \TestCase
 {
-    use DefaultIncludes;
+    use DefaultIncludes, DatabaseTransactions;
 
     /** @test */
     function it_can_get_all_visits_for_an_account()

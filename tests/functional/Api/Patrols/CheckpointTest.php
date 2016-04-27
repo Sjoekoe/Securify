@@ -3,10 +3,12 @@ namespace functional\Api\Patrols;
 
 use App\Helpers\DefaultIncludes;
 use App\Patrols\Checkpoints\Checkpoint;
+use DB;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class CheckpointTest extends \TestCase
 {
-    use DefaultIncludes;
+    use DefaultIncludes, DatabaseTransactions;
 
     /** @test */
     function it_can_get_all_checkpoints_for_a_patrol()
@@ -76,7 +78,7 @@ class CheckpointTest extends \TestCase
         ], $this->setJWTHeaders())
             ->seeJsonEquals([
                 'data' => [
-                    'id' => 1,
+                    'id' => DB::table(Checkpoint::TABLE)->first()->id,
                     'name' => 'Patrol 1',
                     'description' => 'Some description',
                     'accountRelation' => [

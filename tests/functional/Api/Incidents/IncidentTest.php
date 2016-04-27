@@ -4,10 +4,12 @@ namespace functional\Api\Incidents;
 use App\Helpers\DefaultIncludes;
 use App\Incidents\Incident;
 use Carbon\Carbon;
+use DB;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class IncidentTest extends \TestCase
 {
-    use DefaultIncludes;
+    use DefaultIncludes, DatabaseTransactions;
 
     /** @test */
     function it_can_show_all_incidents_for_an_account()
@@ -47,7 +49,7 @@ class IncidentTest extends \TestCase
         ], $this->setJWTHeaders())
             ->seeJsonEquals([
                 'data' => [
-                    'id' => 1,
+                    'id' => DB::table(Incident::TABLE)->first()->id,
                     'type' => 1,
                     'created_at' => $now->toIso8601String(),
                     'ended_at' => null,

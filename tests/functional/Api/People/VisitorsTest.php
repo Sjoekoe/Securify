@@ -3,10 +3,12 @@ namespace functional\Api\People;
 
 use App\Helpers\DefaultIncludes;
 use App\Visitors\Visitor;
+use DB;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class VisitorsTest extends \TestCase
 {
-    use DefaultIncludes;
+    use DefaultIncludes, DatabaseTransactions;
 
     /** @test */
     function it_can_get_all_visitors_for_an_account()
@@ -51,7 +53,7 @@ class VisitorsTest extends \TestCase
             'company_id' => $company->id(),
         ], $this->setJWTHeaders())->seeJsonEquals([
             'data' => [
-                'id' => 1,
+                'id' => DB::table(Visitor::TABLE)->first()->id,
                 'name' => 'post visitor',
                 'accountRelation' => [
                     'data' => $this->includedAccount($account),

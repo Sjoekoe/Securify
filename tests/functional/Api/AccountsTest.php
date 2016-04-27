@@ -4,10 +4,12 @@ namespace functional\Api;
 use App\Accounts\Account;
 use App\Helpers\DefaultIncludes;
 use Carbon\Carbon;
+use DB;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class AccountsTest extends \TestCase
 {
-    use DefaultIncludes;
+    use DefaultIncludes, DatabaseTransactions;
 
     /** @test */
     function it_can_get_all_accounts_paginated()
@@ -43,7 +45,7 @@ class AccountsTest extends \TestCase
             'website' => 'www.test.com',
         ], $this->setJWTHeaders())->seeJsonEquals([
             'data' => [
-                'id' => 1,
+                'id' => DB::table(Account::TABLE)->first()->id,
                 'name' => 'Test Account',
                 'vat' => '456789',
                 'website' => 'www.test.com',
