@@ -1,7 +1,9 @@
 <?php
 namespace App\Criteria;
 
-interface CriteriaOption
+use App\Api\Builders\QueryParam;
+
+interface CriteriaOption extends QueryParam
 {
     /**
      * @return string
