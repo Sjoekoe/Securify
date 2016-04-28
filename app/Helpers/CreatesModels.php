@@ -5,6 +5,7 @@ use App\Accounts\Account;
 use App\Companies\Company;
 use App\Employees\Employee;
 use App\Incidents\Incident;
+use App\Items\Groups\ItemGroup;
 use App\Items\Item;
 use App\Keys\Key;
 use App\Locations\Buildings\Building;
@@ -233,6 +234,17 @@ trait CreatesModels
             'name' => 'Foo Item',
             'description' => 'Lorem ipsum dolores est',
             'code' => 'ARF-4',
+        ], $attributes));
+    }
+
+    /**
+     * @param array $attributes
+     * @return \App\Items\Groups\ItemGroup
+     */
+    public function createItemGroup(array $attributes = [])
+    {
+        return $this->modelFactory->create(ItemGroup::class, array_merge([
+            'name' => 'Foo group',
         ], $attributes));
     }
 }

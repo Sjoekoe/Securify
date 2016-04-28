@@ -118,12 +118,22 @@ $api->version('v1', function(Router $api) {
                 $api->delete('/{task}', ['as' => 'accounts.tasks.delete', 'uses' => 'TaskController@delete']);
             });
 
-            $api->group(['namespace' => 'Items\\', 'prefix' => '{account}/items'], function (Router $api) {
-                $api->get('/', ['as' => 'accounts.items.index', 'uses' => 'ItemController@index']);
-                $api->post('/', ['as' => 'accounts.items.store', 'uses' => 'ItemController@store']);
-                $api->get('/{item}', ['as' => 'accounts.items.show', 'uses' => 'ItemController@show']);
-                $api->put('/{item}', ['as' => 'accounts.items.update', 'uses' => 'ItemController@update']);
-                $api->delete('/{item}', ['as' => 'accounts.items.delete', 'uses' => 'ItemController@delete']);
+            $api->group(['namespace' => 'Items\\'], function (Router $api) {
+                $api->group(['prefix' => '{account}/items'], function (Router $api) {
+                    $api->get('/', ['as' => 'accounts.items.index', 'uses' => 'ItemController@index']);
+                    $api->post('/', ['as' => 'accounts.items.store', 'uses' => 'ItemController@store']);
+                    $api->get('/{item}', ['as' => 'accounts.items.show', 'uses' => 'ItemController@show']);
+                    $api->put('/{item}', ['as' => 'accounts.items.update', 'uses' => 'ItemController@update']);
+                    $api->delete('/{item}', ['as' => 'accounts.items.delete', 'uses' => 'ItemController@delete']);
+                });
+
+                $api->group(['namespace' => 'Groups\\', 'prefix' => '{account}/item-groups'], function (Router $api) {
+                    $api->get('/', ['as' => 'accounts.item_groups.index', 'uses' => 'ItemGroupController@index']);
+                    $api->post('/', ['as' => 'accounts.item_groups.store', 'uses' => 'ItemGroupController@store']);
+                    $api->get('/{itemGroup}', ['as' => 'accounts.item_groups.show', 'uses' => 'ItemGroupController@show']);
+                    $api->put('/{itemGroup}', ['as' => 'accounts.item_groups.update', 'uses' => 'ItemGroupController@update']);
+                    $api->delete('/{itemGroup}', ['as' => 'accounts.item_groups.delete', 'uses' => 'ItemGroupController@delete']);
+                });
             });
         });
     });

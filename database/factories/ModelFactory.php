@@ -5,6 +5,7 @@ use App\Companies\EloquentCompany;
 use App\Employees\EloquentEmployee;
 use App\Incidents\EloquentIncident;
 use App\Items\EloquentItem;
+use App\Items\Groups\EloquentItemGroup;
 use App\Keys\EloquentKey;
 use App\Locations\Buildings\EloquentBuilding;
 use App\Locations\Doors\EloquentDoor;
@@ -60,5 +61,8 @@ $factory->define(EloquentTask::class, function (Generator $faker) {
     return [];
 });
 $factory->define(EloquentItem::class, function (Generator $faker) {
+    return [];
+});
+$factory->define(EloquentItemGroup::class, function (Generator $faker) {
     return [];
 });

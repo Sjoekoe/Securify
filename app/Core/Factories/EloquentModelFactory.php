@@ -10,6 +10,8 @@ use App\Employees\Employee;
 use App\Incidents\EloquentIncident;
 use App\Incidents\Incident;
 use App\Items\EloquentItem;
+use App\Items\Groups\EloquentItemGroup;
+use App\Items\Groups\ItemGroup;
 use App\Items\Item;
 use App\Keys\EloquentKey;
 use App\Keys\Key;
@@ -52,6 +54,7 @@ class EloquentModelFactory
         Employee::class => EloquentEmployee::class,
         Incident::class => EloquentIncident::class,
         Item::class => EloquentItem::class,
+        ItemGroup::class => EloquentItemGroup::class,
         Key::class => EloquentKey::class,
         Patrol::class => EloquentPatrol::class,
         Task::class => EloquentTask::class,

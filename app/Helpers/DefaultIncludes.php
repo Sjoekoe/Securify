@@ -5,6 +5,7 @@ use App\Accounts\Account;
 use App\Companies\Company;
 use App\Employees\Employee;
 use App\Incidents\Incident;
+use App\Items\Groups\ItemGroup;
 use App\Items\Item;
 use App\Keys\Key;
 use App\Locations\Buildings\Building;
@@ -306,6 +307,22 @@ trait DefaultIncludes
             'code' => $item->code(),
             'accountRelation' => [
                 'data' => $this->includedAccount($item->account()),
+            ],
+        ], $attributes);
+    }
+
+    /**
+     * @param \App\Items\Groups\ItemGroup $itemGroup
+     * @param array $attributes
+     * @return array
+     */
+    public function includedItemGroup(ItemGroup $itemGroup, $attributes = [])
+    {
+        return array_merge([
+            'id' => $itemGroup->id(),
+            'name' => $itemGroup->name(),
+            'accountRelation' => [
+                'data' => $this->includedAccount($itemGroup->account()),
             ],
         ], $attributes);
     }
