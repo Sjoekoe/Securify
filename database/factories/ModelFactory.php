@@ -13,6 +13,7 @@ use App\Patrols\Checkpoints\EloquentCheckpoint;
 use App\Patrols\EloquentPatrol;
 use App\Tasks\EloquentTask;
 use App\Teams\EloquentTeam;
+use App\Transports\EloquentTransport;
 use App\Users\EloquentUser;
 use App\Vehicles\EloquentVehicle;
 use App\Visitors\EloquentVisitor;
@@ -68,5 +69,8 @@ $factory->define(EloquentItemGroup::class, function (Generator $faker) {
     return [];
 });
 $factory->define(EloquentVehicle::class, function (Generator $faker) {
+    return [];
+});
+$factory->define(EloquentTransport::class, function (Generator $faker) {
     return [];
 });

@@ -14,6 +14,7 @@ use App\Patrols\Checkpoints\Checkpoint;
 use App\Patrols\Patrol;
 use App\Tasks\Task;
 use App\Teams\Team;
+use App\Transports\Transport;
 use App\Users\User;
 use App\Vehicles\Vehicle;
 use App\Visitors\Visitor;
@@ -258,6 +259,18 @@ trait CreatesModels
         return $this->modelFactory->create(Vehicle::class, array_merge([
             'type' => Vehicle::CAR,
             'license_plate' => '123-BEG',
+        ], $attributes));
+    }
+
+    /**
+     * @param array $attributes
+     * @return \App\Transports\Transport
+     */
+    public function createTransport(array $attributes = [])
+    {
+        return $this->modelFactory->create(Transport::class, array_merge([
+            'product' => 'Foo product',
+            'number' => '123bGJ56',
         ], $attributes));
     }
 }

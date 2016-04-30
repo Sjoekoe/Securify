@@ -176,6 +176,7 @@ return [
         App\Patrols\PatrolServiceProvider::class,
         App\Users\AuthServiceProvider::class,
         App\Teams\TeamServiceProvider::class,
+        App\Transports\TransportServiceProvider::class,
         App\Users\UserServiceProvider::class,
         App\Vehicles\VehicleServiceProvider::class,
         App\Visitors\VisitorServiceProvider::class,

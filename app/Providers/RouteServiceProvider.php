@@ -14,6 +14,7 @@ use App\Patrols\Checkpoints\CheckpointRouteBinding;
 use App\Patrols\PatrolRouteBinding;
 use App\Tasks\TaskRouteBinding;
 use App\Teams\TeamRouteBinding;
+use App\Transports\TransportRouteBinding;
 use App\Vehicles\VehicleRouteBinding;
 use App\Visitors\VisitorRouteBinding;
 use App\Visits\VisitRouteBinding;
@@ -55,6 +56,7 @@ class RouteServiceProvider extends ServiceProvider
         $router->bind('patrol', PatrolRouteBinding::class);
         $router->bind('task', TaskRouteBinding::class);
         $router->bind('team', TeamRouteBinding::class);
+        $router->bind('transport', TransportRouteBinding::class);
         $router->bind('user', UserRouteBinding::class);
         $router->bind('vehicle', VehicleRouteBinding::class);
         $router->bind('visit', VisitRouteBinding::class);

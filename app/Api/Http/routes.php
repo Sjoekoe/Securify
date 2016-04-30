@@ -143,6 +143,14 @@ $api->version('v1', function(Router $api) {
                 $api->put('/{vehicle}', ['as' => 'accounts.vehicles.update', 'uses' => 'VehicleController@update']);
                 $api->delete('/{vehicle}', ['as' => 'accounts.vehicles.delete', 'uses' => 'VehicleController@delete']);
             });
+
+            $api->group(['namespace' => 'Transports\\', 'prefix' => '{account}/transports'], function (Router $api) {
+                $api->get('/', ['as' => 'accounts.transports.index', 'uses' => 'TransportController@index']);
+                $api->post('/', ['as' => 'accounts.transports.store', 'uses' => 'TransportController@store']);
+                $api->get('/{transport}', ['as' => 'accounts.transports.show', 'uses' => 'TransportController@show']);
+                $api->put('/{transport}', ['as' => 'accounts.transports.update', 'uses' => 'TransportController@update']);
+                $api->delete('/{transport}', ['as' => 'accounts.transports.delete', 'uses' => 'TransportController@delete']);
+            });
         });
     });
 });

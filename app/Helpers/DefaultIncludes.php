@@ -14,6 +14,7 @@ use App\Patrols\Checkpoints\Checkpoint;
 use App\Patrols\Patrol;
 use App\Tasks\Task;
 use App\Teams\Team;
+use App\Transports\Transport;
 use App\Users\User;
 use App\Vehicles\Vehicle;
 use App\Visitors\Visitor;
@@ -341,6 +342,26 @@ trait DefaultIncludes
             'license_plate' => $vehicle->licensePLate(),
             'accountRelation' => [
                 'data' => $this->includedAccount($vehicle->account()),
+            ],
+        ], $attributes);
+    }
+
+    /**
+     * @param \App\Transports\Transport $transport
+     * @param array $attributes
+     * @return \App\Transports\Transport
+     */
+    public function includedTransport(Transport $transport, $attributes = [])
+    {
+        return array_merge([
+            'id' => $transport->id(),
+            'product' => $transport->product(),
+            'number' => $transport->number(),
+            'accountRelation' => [
+                'data' => $this->includedAccount($transport->account()),
+            ],
+            'vehicleRelation' => [
+                'data' => $this->includedVehicle($transport->vehicle()),
             ],
         ], $attributes);
     }
