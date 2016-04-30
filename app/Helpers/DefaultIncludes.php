@@ -15,6 +15,7 @@ use App\Patrols\Patrol;
 use App\Tasks\Task;
 use App\Teams\Team;
 use App\Users\User;
+use App\Vehicles\Vehicle;
 use App\Visitors\Visitor;
 use App\Visits\Visit;
 
@@ -323,6 +324,23 @@ trait DefaultIncludes
             'name' => $itemGroup->name(),
             'accountRelation' => [
                 'data' => $this->includedAccount($itemGroup->account()),
+            ],
+        ], $attributes);
+    }
+
+    /**
+     * @param \App\Vehicles\Vehicle $vehicle
+     * @param array $attributes
+     * @return array
+     */
+    public function includedVehicle(Vehicle $vehicle, $attributes = [])
+    {
+        return array_merge([
+            'id' => $vehicle->id(),
+            'type' => $vehicle->type(),
+            'license_plate' => $vehicle->licensePLate(),
+            'accountRelation' => [
+                'data' => $this->includedAccount($vehicle->account()),
             ],
         ], $attributes);
     }

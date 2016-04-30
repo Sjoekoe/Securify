@@ -15,6 +15,7 @@ use App\Patrols\Patrol;
 use App\Tasks\Task;
 use App\Teams\Team;
 use App\Users\User;
+use App\Vehicles\Vehicle;
 use App\Visitors\Visitor;
 use App\Visits\Visit;
 use Carbon\Carbon;
@@ -245,6 +246,18 @@ trait CreatesModels
     {
         return $this->modelFactory->create(ItemGroup::class, array_merge([
             'name' => 'Foo group',
+        ], $attributes));
+    }
+
+    /**
+     * @param array $attributes
+     * @return \App\Vehicles\Vehicle
+     */
+    public function createVehicle(array $attributes = [])
+    {
+        return $this->modelFactory->create(Vehicle::class, array_merge([
+            'type' => Vehicle::CAR,
+            'license_plate' => '123-BEG',
         ], $attributes));
     }
 }

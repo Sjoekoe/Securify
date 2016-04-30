@@ -135,6 +135,14 @@ $api->version('v1', function(Router $api) {
                     $api->delete('/{itemGroup}', ['as' => 'accounts.item_groups.delete', 'uses' => 'ItemGroupController@delete']);
                 });
             });
+
+            $api->group(['namespace' => 'Vehicles\\', 'prefix' => '{account}/vehicles'], function (Router $api) {
+                $api->get('/', ['as' => 'accounts.vehicles.index', 'uses' => 'VehicleController@index']);
+                $api->post('/', ['as' => 'accounts.vehicles.store', 'uses' => 'VehicleController@store']);
+                $api->get('/{vehicle}', ['as' => 'accounts.vehicles.show', 'uses' => 'VehicleController@show']);
+                $api->put('/{vehicle}', ['as' => 'accounts.vehicles.update', 'uses' => 'VehicleController@update']);
+                $api->delete('/{vehicle}', ['as' => 'accounts.vehicles.delete', 'uses' => 'VehicleController@delete']);
+            });
         });
     });
 });
