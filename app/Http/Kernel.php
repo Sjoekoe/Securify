@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AuthAccount;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\RedirectIfAuthenticated;
@@ -56,6 +57,7 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => Authenticate::class,
+        'auth.account' => AuthAccount::class,
         'auth.basic' => AuthenticateWithBasicAuth::class,
         'can' => Authorize::class,
         'guest' => RedirectIfAuthenticated::class,
