@@ -1,5 +1,10 @@
 <?php
 
+use App\Dates\Validation\AccountDateFormatRule;
+use App\Dates\Validation\AccountTimeFormatRule;
+use App\Dates\Validation\AfterDateRule;
+use App\Dates\Validation\BeforeDateRule;
+
 return [
 
     /*
@@ -79,6 +84,11 @@ return [
     'timezone'             => 'The :attribute must be a valid zone.',
     'unique'               => 'The :attribute has already been taken.',
     'url'                  => 'The :attribute format is invalid.',
+
+    AccountDateFormatRule::NAME => 'The :attribute is not a valid date.',
+    AccountTimeFormatRule::NAME => 'The :attribute is not a valid time.',
+    AfterDateRule::NAME => 'The :attribute must be a date after the start date.',
+    BeforeDateRule::NAME => 'The :attribute must be a date before the start date.',
 
     /*
     |--------------------------------------------------------------------------
