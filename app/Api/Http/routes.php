@@ -158,6 +158,14 @@ $api->version('v1', function(Router $api) {
                 $api->get('/{document}', ['as' => 'accounts.documents.show', 'uses' => 'DocumentController@show']);
                 $api->put('/{document}', ['as' => 'accounts.documents.update', 'uses' => 'DocumentController@update']);
                 $api->delete('/{document}', ['as' => 'accounts.documents.delete', 'uses' => 'DocumentController@delete']);
+
+                $api->group(['namespace' => 'Folders\\', 'prefix' => '{document}/folders'], function (Router $api) {
+                    $api->get('/', ['as' => 'accounts.documents.folders.index', 'uses' => 'FolderController@index']);
+                    $api->post('/', ['as' => 'accounts.documents.folders.store', 'uses' => 'FolderController@store']);
+                    $api->get('/{folder}', ['as' => 'accounts.documents.folders.show', 'uses' => 'FolderController@show']);
+                    $api->put('/{folder}', ['as' => 'accounts.documents.folders.update', 'uses' => 'FolderController@update']);
+                    $api->delete('/{folder}', ['as' => 'accounts.documents.folders.delete', 'uses' => 'FolderController@delete']);
+                });
             });
         });
     });

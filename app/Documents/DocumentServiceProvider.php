@@ -1,6 +1,9 @@
 <?php
 namespace App\Documents;
 
+use App\Documents\Folders\EloquentFolder;
+use App\Documents\Folders\EloquentFolderRepository;
+use App\Documents\Folders\FolderRepository;
 use Illuminate\Support\ServiceProvider;
 
 class DocumentServiceProvider extends ServiceProvider
@@ -15,6 +18,10 @@ class DocumentServiceProvider extends ServiceProvider
         $this->app->singleton(DocumentRepository::class, function () {
             return new EloquentDocumentRepository(new EloquentDocument());
         });
+        
+        $this->app->singleton(FolderRepository::class, function() {
+            return new EloquentFolderRepository(new EloquentFolder());
+        });
     }
 
     /**
@@ -24,6 +31,7 @@ class DocumentServiceProvider extends ServiceProvider
     {
         return [
             DocumentRepository::class,
+            FolderRepository::class,
         ];
     }
 }

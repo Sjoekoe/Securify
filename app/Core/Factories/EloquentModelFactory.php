@@ -7,6 +7,8 @@ use App\Companies\Company;
 use App\Companies\EloquentCompany;
 use App\Documents\Document;
 use App\Documents\EloquentDocument;
+use App\Documents\Folders\EloquentFolder;
+use App\Documents\Folders\Folder;
 use App\Employees\EloquentEmployee;
 use App\Employees\Employee;
 use App\Incidents\EloquentIncident;
@@ -59,6 +61,7 @@ class EloquentModelFactory
         Document::class => EloquentDocument::class,
         Door::class => EloquentDoor::class,
         Employee::class => EloquentEmployee::class,
+        Folder::class => EloquentFolder::class,
         Incident::class => EloquentIncident::class,
         Item::class => EloquentItem::class,
         ItemGroup::class => EloquentItemGroup::class,

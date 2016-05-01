@@ -4,6 +4,7 @@ namespace App\Helpers;
 use App\Accounts\Account;
 use App\Companies\Company;
 use App\Documents\Document;
+use App\Documents\Folders\Folder;
 use App\Employees\Employee;
 use App\Incidents\Incident;
 use App\Items\Groups\ItemGroup;
@@ -379,6 +380,25 @@ trait DefaultIncludes
             'name' => $document->name(),
             'accountRelation' => [
                 'data' => $this->includedAccount($document->account()),
+            ],
+        ], $attributes);
+    }
+
+    /**
+     * @param \App\Documents\Folders\Folder $folder
+     * @param array $attributes
+     * @return array
+     */
+    public function includedFolder(Folder $folder, $attributes = [])
+    {
+        return array_merge([
+            'id' => $folder->id(),
+            'name' => $folder->name(),
+            'accountRelation' => [
+                'data' => $this->includedAccount($folder->account()),
+            ],
+            'documentRelation' => [
+                'data' => $this->includedDocument($folder->document())
             ],
         ], $attributes);
     }

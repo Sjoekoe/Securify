@@ -4,6 +4,7 @@ namespace App\Helpers;
 use App\Accounts\Account;
 use App\Companies\Company;
 use App\Documents\Document;
+use App\Documents\Folders\Folder;
 use App\Employees\Employee;
 use App\Incidents\Incident;
 use App\Items\Groups\ItemGroup;
@@ -283,6 +284,18 @@ trait CreatesModels
     {
         return $this->modelFactory->create(Document::class, array_merge([
             'name' => 'Foo name',
+        ], $attributes));
+    }
+
+    /**
+     * @param array $attributes
+     * @return \App\Documents\Folders\Folder
+     */
+    public function createFolder(array $attributes = [])
+    {
+        return $this->modelFactory->create(Folder::class, array_merge([
+            'name' => 'test folder',
+            'parent_folder_id' => null
         ], $attributes));
     }
 }
