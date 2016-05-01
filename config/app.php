@@ -167,6 +167,7 @@ return [
         App\Core\Factories\ModelFactoryServiceProvider::class,
         App\Database\DatabaseServiceProvider::class,
         App\Dates\DateTimeServiceProvider::class,
+        App\Documents\DocumentServiceProvider::class,
         App\Employees\EmployeeServiceProvider::class,
         App\Filesystem\FilesystemServiceProvider::class,
         App\Http\HttpServiceProvider::class,

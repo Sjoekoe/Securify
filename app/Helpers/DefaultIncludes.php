@@ -3,6 +3,7 @@ namespace App\Helpers;
 
 use App\Accounts\Account;
 use App\Companies\Company;
+use App\Documents\Document;
 use App\Employees\Employee;
 use App\Incidents\Incident;
 use App\Items\Groups\ItemGroup;
@@ -362,6 +363,22 @@ trait DefaultIncludes
             ],
             'vehicleRelation' => [
                 'data' => $this->includedVehicle($transport->vehicle()),
+            ],
+        ], $attributes);
+    }
+
+    /**
+     * @param \App\Documents\Document $document
+     * @param array $attributes
+     * @return array
+     */
+    public function includedDocument(Document $document, $attributes = [])
+    {
+        return array_merge([
+            'id' => $document->id(),
+            'name' => $document->name(),
+            'accountRelation' => [
+                'data' => $this->includedAccount($document->account()),
             ],
         ], $attributes);
     }

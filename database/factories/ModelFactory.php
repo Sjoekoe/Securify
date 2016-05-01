@@ -2,6 +2,7 @@
 
 use App\Accounts\EloquentAccount;
 use App\Companies\EloquentCompany;
+use App\Documents\EloquentDocument;
 use App\Employees\EloquentEmployee;
 use App\Incidents\EloquentIncident;
 use App\Items\EloquentItem;
@@ -72,5 +73,8 @@ $factory->define(EloquentVehicle::class, function (Generator $faker) {
     return [];
 });
 $factory->define(EloquentTransport::class, function (Generator $faker) {
+    return [];
+});
+$factory->define(EloquentDocument::class, function (Generator $faker) {
     return [];
 });

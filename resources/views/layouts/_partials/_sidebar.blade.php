@@ -26,6 +26,36 @@
                     Incidents <i class="im-fire"></i>
                 </a>
             </li>
+            <li>
+                <a href="#">
+                    Vehicles
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Transports
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Patrols
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Locations
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Documents
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Tasks
+                </a>
+            </li>
         </ul>
     </div>
 </div>

@@ -5,6 +5,8 @@ use App\Accounts\Account;
 use App\Accounts\EloquentAccount;
 use App\Companies\Company;
 use App\Companies\EloquentCompany;
+use App\Documents\Document;
+use App\Documents\EloquentDocument;
 use App\Employees\EloquentEmployee;
 use App\Employees\Employee;
 use App\Incidents\EloquentIncident;
@@ -54,6 +56,7 @@ class EloquentModelFactory
         Building::class => EloquentBuilding::class,
         Checkpoint::class => EloquentCheckpoint::class,
         Company::class => EloquentCompany::class,
+        Document::class => EloquentDocument::class,
         Door::class => EloquentDoor::class,
         Employee::class => EloquentEmployee::class,
         Incident::class => EloquentIncident::class,

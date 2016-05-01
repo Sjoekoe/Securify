@@ -3,6 +3,7 @@ namespace App\Helpers;
 
 use App\Accounts\Account;
 use App\Companies\Company;
+use App\Documents\Document;
 use App\Employees\Employee;
 use App\Incidents\Incident;
 use App\Items\Groups\ItemGroup;
@@ -271,6 +272,17 @@ trait CreatesModels
         return $this->modelFactory->create(Transport::class, array_merge([
             'product' => 'Foo product',
             'number' => '123bGJ56',
+        ], $attributes));
+    }
+
+    /**
+     * @param array $attributes
+     * @return \App\Documents\Document
+     */
+    public function createDocument(array $attributes = [])
+    {
+        return $this->modelFactory->create(Document::class, array_merge([
+            'name' => 'Foo name',
         ], $attributes));
     }
 }

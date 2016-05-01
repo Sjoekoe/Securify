@@ -3,6 +3,7 @@ namespace App\Providers;
 
 use App\Accounts\AccountRouteBinding;
 use App\Companies\CompanyRouteBinding;
+use App\Documents\DocumentRouteBinding;
 use App\Employees\EmployeeRouteBinding;
 use App\Incidents\IncidentRouteBinding;
 use App\Items\Groups\ItemGroupRouteBinding;
@@ -47,6 +48,7 @@ class RouteServiceProvider extends ServiceProvider
         $router->bind('building', BuildingRouteBinding::class);
         $router->bind('checkpoint', CheckpointRouteBinding::class);
         $router->bind('company', CompanyRouteBinding::class);
+        $router->bind('document', DocumentRouteBinding::class);
         $router->bind('door', DoorRouteBinding::class);
         $router->bind('employee', EmployeeRouteBinding::class);
         $router->bind('incident', IncidentRouteBinding::class);
