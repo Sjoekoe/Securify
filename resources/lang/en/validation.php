@@ -4,6 +4,8 @@ use App\Dates\Validation\AccountDateFormatRule;
 use App\Dates\Validation\AccountTimeFormatRule;
 use App\Dates\Validation\AfterDateRule;
 use App\Dates\Validation\BeforeDateRule;
+use App\Filesystem\Rules\LargeFileSizeRule;
+use App\Filesystem\Rules\SmallFileSizeRule;
 
 return [
 
@@ -89,6 +91,8 @@ return [
     AccountTimeFormatRule::NAME => 'The :attribute is not a valid time.',
     AfterDateRule::NAME => 'The :attribute must be a date after the start date.',
     BeforeDateRule::NAME => 'The :attribute must be a date before the start date.',
+    LargeFileSizeRule::NAME => 'The :attribute may not be greater than :filesize.',
+    SmallFileSizeRule::NAME => 'The :attribute may not be greater than :filesize.',
 
     /*
     |--------------------------------------------------------------------------
