@@ -63,6 +63,18 @@ class CompaniesTest extends \TestCase
     }
 
     /** @test */
+    function it_can_not_show_a_company_that_does_not_belong_to_the_account()
+    {
+        $account = $this->createAccount();
+        $company = $this->createCompany([
+            'account_id' => $account->id(),
+        ]);
+        $account2 = $this->createAccount();
+        $this->get('/api/accounts/' . $account2->id() . '/companies/' . $company->id(), $this->setJWTHeaders())
+            ->assertForbidden();
+    }
+
+    /** @test */
     function it_can_show_a_company()
     {
         $account = $this->createAccount();

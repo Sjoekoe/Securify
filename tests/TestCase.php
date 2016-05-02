@@ -57,4 +57,9 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
     {
         return $this->assertResponseStatus(Response::HTTP_NO_CONTENT);
     }
+    
+    public function assertForbidden()
+    {
+        return $this->assertResponseStatus(Response::HTTP_FORBIDDEN);
+    }
 }

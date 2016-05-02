@@ -56,6 +56,19 @@ class DocumentsTest extends \TestCase
     }
 
     /** @test */
+    function it_can_not_show_a_document_that_does_not_belong_to_the_account()
+    {
+        $account = $this->createAccount();
+        $document = $this->createDocument([
+            'account_id' => $account->id(),
+        ]);
+        $account2 = $this->createAccount();
+
+        $this->get('/api/accounts/' . $account2->id() . '/documents/' . $document->id(), $this->setJWTHeaders())
+            ->assertForbidden();
+    }
+
+    /** @test */
     function it_can_show_a_document()
     {
         $account = $this->createAccount();

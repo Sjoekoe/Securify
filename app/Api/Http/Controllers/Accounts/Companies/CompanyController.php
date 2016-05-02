@@ -2,8 +2,12 @@
 namespace App\Api\Http\Controllers\Accounts\Companies;
 
 use App\Accounts\Account;
+use App\Api\Companies\Requests\DeleteCompanyRequest;
+use App\Api\Accounts\Requests\ShowAccountRequest;
 use App\Api\Companies\CompanyTransformer;
+use App\Api\Companies\Requests\ShowCompanyRequest;
 use App\Api\Companies\Requests\StoreCompanyRequest;
+use App\Api\Companies\Requests\UpdateCompanyRequest;
 use App\Api\Http\Controller;
 use App\Companies\Company;
 use App\Companies\CompanyRepository;
@@ -34,19 +38,19 @@ class CompanyController extends Controller
         return $this->response()->item($company, new CompanyTransformer());
     }
 
-    public function show(Account $account, Company $company)
+    public function show(ShowCompanyRequest $request, Account $account, Company $company)
     {
         return $this->response()->item($company, new CompanyTransformer());
     }
 
-    public function update(StoreCompanyRequest $request, Account $account, Company $company)
+    public function update(UpdateCompanyRequest $request, Account $account, Company $company)
     {
         $company = $this->companies->update($company, $request->all());
 
         return $this->response()->item($company, new CompanyTransformer());
     }
 
-    public function delete(Account $account, Company $company)
+    public function delete(DeleteCompanyRequest $request, Account $account, Company $company)
     {
         $this->companies->delete($company);
 

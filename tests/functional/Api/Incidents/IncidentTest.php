@@ -61,6 +61,19 @@ class IncidentTest extends \TestCase
     }
 
     /** @test */
+    function it_can_not_show_an_incident_that_does_not_belong_to_the_account()
+    {
+        $account = $this->createAccount();
+        $incident = $this->createIncident([
+            'account_id' => $account->id(),
+        ]);
+        $account2 = $this->createAccount();
+
+        $this->get('/api/accounts/' . $account2->id() . '/incidents/' . $incident->id(), $this->setJWTHeaders())
+            ->assertForbidden();
+    }
+
+    /** @test */
     function it_can_show_an_incident()
     {
         $account = $this->createAccount();

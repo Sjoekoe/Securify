@@ -4,6 +4,7 @@ namespace App\Api\Http\Controllers\Accounts\Incidents;
 use App\Accounts\Account;
 use App\Api\Http\Controller;
 use App\Api\Incidents\IncidentTransformer;
+use App\Api\Incidents\Requests\ShowIncidentRequest;
 use App\Api\Incidents\Requests\StoreIncidentRequest;
 use App\Incidents\Incident;
 use App\Incidents\IncidentRepository;
@@ -34,19 +35,19 @@ class IncidentController extends Controller
         return $this->response()->item($incident, new IncidentTransformer());
     }
 
-    public function show(Account $account, Incident $incident)
+    public function show(ShowIncidentRequest $request, Account $account, Incident $incident)
     {
         return $this->response()->item($incident, new IncidentTransformer());
     }
 
-    public function update(StoreIncidentRequest $request, Account $account, Incident $incident)
+    public function update(ShowIncidentRequest $request, Account $account, Incident $incident)
     {
         $incident = $this->incidents->update($incident, $request->all());
 
         return $this->response()->item($incident, new IncidentTransformer());
     }
 
-    public function delete(Account $account, Incident $incident)
+    public function delete(ShowIncidentRequest $request, Account $account, Incident $incident)
     {
         $this->incidents->delete($incident);
 

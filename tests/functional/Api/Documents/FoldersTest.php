@@ -66,6 +66,25 @@ class FoldersTest extends \TestCase
     }
 
     /** @test */
+    function it_can_not_show_a_folder_that_does_not_belong_to_the_document()
+    {
+        $account = $this->createAccount();
+        $document = $this->createDocument([
+            'account_id' => $account->id(),
+        ]);
+        $document2 = $this->createDocument([
+            'account_id' => $account->id(),
+        ]);
+        $folder = $this->createFolder([
+            'account_id' => $account->id(),
+            'document_id' => $document->id(),
+        ]);
+
+        $this->get('/api/accounts/' . $account->id() . '/documents/' . $document2->id() . '/folders/' . $folder->id(), $this->setJWTHeaders())
+            ->assertForbidden();
+    }
+
+    /** @test */
     function it_can_show_a_folder()
     {
         $account = $this->createAccount();
