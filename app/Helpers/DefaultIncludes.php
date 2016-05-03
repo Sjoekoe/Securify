@@ -16,6 +16,7 @@ use App\Patrols\Checkpoints\Checkpoint;
 use App\Patrols\Patrol;
 use App\Tasks\Task;
 use App\Teams\Team;
+use App\Todos\Todo;
 use App\Transports\Transport;
 use App\Users\User;
 use App\Vehicles\Vehicle;
@@ -399,6 +400,27 @@ trait DefaultIncludes
             ],
             'documentRelation' => [
                 'data' => $this->includedDocument($folder->document())
+            ],
+        ], $attributes);
+    }
+
+    /**
+     * @param \App\Todos\Todo $todo
+     * @param array $attributes
+     * @return array
+     */
+    public function includedTodo(Todo $todo, $attributes = [])
+    {
+        return array_merge([
+            'id' => $todo->id(),
+            'name' => $todo->name(),
+            'date' => $todo->date()->toIso8601String(),
+            'finished' => $todo->finished(),
+            'accountRelation' => [
+                'data' => $this->includedAccount($todo->account()),
+            ],
+            'userRelation' => [
+                'data' => $this->includedUser($todo->user()),
             ],
         ], $attributes);
     }

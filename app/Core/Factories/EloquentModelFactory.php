@@ -31,6 +31,8 @@ use App\Tasks\EloquentTask;
 use App\Tasks\Task;
 use App\Teams\EloquentTeam;
 use App\Teams\Team;
+use App\Todos\EloquentTodo;
+use App\Todos\Todo;
 use App\Transports\EloquentTransport;
 use App\Transports\Transport;
 use App\Users\EloquentUser;
@@ -69,6 +71,7 @@ class EloquentModelFactory
         Patrol::class => EloquentPatrol::class,
         Task::class => EloquentTask::class,
         Team::class => EloquentTeam::class,
+        Todo::class => EloquentTodo::class,
         Transport::class => EloquentTransport::class,
         User::class => EloquentUser::class,
         Vehicle::class => EloquentVehicle::class,

@@ -16,6 +16,7 @@ use App\Patrols\Checkpoints\Checkpoint;
 use App\Patrols\Patrol;
 use App\Tasks\Task;
 use App\Teams\Team;
+use App\Todos\Todo;
 use App\Transports\Transport;
 use App\Users\User;
 use App\Vehicles\Vehicle;
@@ -296,6 +297,21 @@ trait CreatesModels
         return $this->modelFactory->create(Folder::class, array_merge([
             'name' => 'test folder',
             'parent_folder_id' => null
+        ], $attributes));
+    }
+
+    /**
+     * @param array $attributes
+     * @return \App\Todos\Todo
+     */
+    public function createTodo(array $attributes = [])
+    {
+        $now = Carbon::now();
+        
+        return $this->modelFactory->create(Todo::class, array_merge([
+            'name' => 'Foo todo',
+            'date' => $now,
+            'finished' => false
         ], $attributes));
     }
 }

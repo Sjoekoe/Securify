@@ -40,6 +40,18 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
     }
 
     /**
+     * @return \App\Users\User
+     */
+    public function loginAsUser()
+    {
+        $user = $this->createUser();
+
+        $this->be($user);
+
+        return $user;
+    }
+
+    /**
      * @param int|null $userId
      * @return array
      */
@@ -48,16 +60,18 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         return ['Authorization' => 'Bearer ' . $this->getJWTToken($userId)];
     }
 
-    private function getJWTToken($userId)
+    private function getJWTToken($user)
     {
-        return $this->app[TokenGenerator::class]->byUser($this->createUser());
+        $user = $user ? $user : $this->createUser();
+
+        return $this->app[TokenGenerator::class]->byUser($user);
     }
 
     public function assertNoContent()
     {
         return $this->assertResponseStatus(Response::HTTP_NO_CONTENT);
     }
-    
+
     public function assertForbidden()
     {
         return $this->assertResponseStatus(Response::HTTP_FORBIDDEN);

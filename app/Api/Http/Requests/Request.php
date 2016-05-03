@@ -55,4 +55,12 @@ class Request extends FormRequest
     {
         return $this->route('incident');
     }
+
+    /**
+     * @return \App\Todos\Todo
+     */
+    public function getTodoFromRoute()
+    {
+        return $this->route('todo');
+    }
 }

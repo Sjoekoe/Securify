@@ -15,6 +15,7 @@ use App\Patrols\Checkpoints\EloquentCheckpoint;
 use App\Patrols\EloquentPatrol;
 use App\Tasks\EloquentTask;
 use App\Teams\EloquentTeam;
+use App\Todos\EloquentTodo;
 use App\Transports\EloquentTransport;
 use App\Users\EloquentUser;
 use App\Vehicles\EloquentVehicle;
@@ -80,5 +81,8 @@ $factory->define(EloquentDocument::class, function (Generator $faker) {
     return [];
 });
 $factory->define(EloquentFolder::class, function (Generator $faker) {
+    return [];
+});
+$factory->define(EloquentTodo::class, function (Generator $faker) {
     return [];
 });

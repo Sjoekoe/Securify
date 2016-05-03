@@ -167,6 +167,14 @@ $api->version('v1', function(Router $api) {
                     $api->delete('/{folder}', ['as' => 'accounts.documents.folders.delete', 'uses' => 'FolderController@delete']);
                 });
             });
+
+            $api->group(['namespace' => 'Todos\\', 'prefix' => '{account}/todos'], function (Router $api) {
+                $api->get('/', ['as' => 'accounts.todos.index', 'uses' => 'TodoController@index']);
+                $api->post('/', ['as' => 'accounts.todos.store', 'uses' => 'TodoController@store']);
+                $api->get('/{todo}', ['as' => 'accounts.todos.show', 'uses' => 'TodoController@show']);
+                $api->put('/{todo}', ['as' => 'accounts.todos.update', 'uses' => 'TodoController@update']);
+                $api->delete('/{todo}', ['as' => 'accounts.todos.delete', 'uses' => 'TodoController@delete']);
+            });
         });
     });
 });
